@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISI8003: Philosophy of Islamic Science - Executive Course Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk, Amiri (Arabic) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#07090e',
+                        surface: '#0f131c',
+                        surfaceLight: '#181e2b',
+                        borderMuted: '#242d3d',
+                        gold: '#d4af37',
+                        goldHover: '#e6c34e',
+                        bright: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        mono: ['"Space Grotesk"', 'monospace'],
+                        arabic: ['"Amiri"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #07090e;
+            color: #e2e8f0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        [dir="rtl"] {
+            font-family: 'Amiri', 'Plus Jakarta Sans', serif;
+        }
+        .glow-gold {
+            box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.25);
+        }
+        .glow-card {
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border-color: #d4af37;
+            color: #f8fafc;
+        }
+        .topic-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .topic-item.open .topic-body {
+            max-height: 800px;
+        }
+        .topic-item.open .topic-chevron {
+            transform: rotate(180deg);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #242d3d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="selection:bg-gold selection:text-obsidian antialiased">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-obsidian/90 backdrop-blur-md border-b border-borderMuted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold/30 to-amber-500/10 border border-gold/40 flex items-center justify-center text-xl shadow-inner">
+                    <span>🏛️</span>
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-gold font-mono block">ISI8003 Executive Portal</span>
+                    <h1 class="text-base sm:text-lg font-bold text-bright tracking-tight" id="headerCourseTitle">Philosophy of Islamic Science</h1>
+                </div>
+            </div>
+
+            <!-- Navigation Links & Language Switcher -->
+            <div class="flex items-center space-x-4 sm:space-x-8 rtl:space-x-reverse">
+                <nav class="hidden md:flex space-x-6 rtl:space-x-reverse text-sm font-medium text-slate-300">
+                    <a href="#overview" class="hover:text-gold transition-colors py-1" id="navLinkOverview">Overview</a>
+                    <a href="#deadlines" class="hover:text-gold transition-colors py-1" id="navLinkDeadlines">Deadlines</a>
+                    <a href="#assignments" class="hover:text-gold transition-colors py-1" id="navLinkAssignments">Assignments</a>
+                    <a href="#directory" class="hover:text-gold transition-colors py-1" id="navLinkTopics">Thesis Directory</a>
+                </nav>
+
+                <!-- Dual Language Button -->
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="flex items-center space-x-2 rtl:space-x-reverse px-3.5 py-1.5 rounded-lg bg-surfaceLight border border-borderMuted hover:border-gold/60 text-slate-200 text-xs sm:text-sm font-semibold transition-all">
+                    <span id="currentLangFlag">🇬🇧</span>
+                    <span id="currentLangLabel">English</span>
+                    <span class="text-slate-500 text-xs">|</span>
+                    <span class="text-gold text-xs font-arabic" id="targetLangPreview">العربية</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Course Header & Live Deadlines Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <section id="hero" class="relative rounded-3xl bg-gradient-to-b from-surface to-obsidian border border-borderMuted p-6 sm:p-10 glow-card overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <div class="inline-flex items-center space-x-2 rtl:space-x-reverse px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono uppercase tracking-wider mb-4">
+                    <span>⚡ Academic Semester 2026/2027</span>
+                    <span>•</span>
+                    <span id="badgeCalendarTerm">Official Timeline</span>
+                </div>
+
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-bright tracking-tight max-w-3xl leading-tight" id="heroMainHeading">
+                    Integrative Epistemology & Modern Scientific Discourse
+                </h2>
+                <p class="mt-4 text-slate-400 text-sm sm:text-base max-w-2xl leading-relaxed" id="heroSubtitle">
+                    Comprehensive portal for syllabus mastery, rigorous critical reviews, interdisciplinary thesis formulation, and real-time assessment monitoring.
+                </p>
+
+                <!-- Deadlines Section Anchor -->
+                <div id="deadlines" class="mt-10 scroll-mt-28">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                            <span class="text-gold text-lg">⏳</span>
+                            <h3 class="text-base sm:text-lg font-bold text-bright tracking-wide uppercase font-mono" id="deadlineGridTitle">
+                                Submission Countdowns & Milestone Deadlines
+                            </h3>
+                        </div>
+                        <span class="text-xs text-slate-400 font-mono hidden sm:inline" id="gmtBadge">Malaysia Time (GMT+8)</span>
+                    </div>
+
+                    <!-- 5 Assessments Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <!-- Card 1: Article Review 1 -->
+                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">15%</span>
+                                    <span class="text-[11px] text-slate-400 font-mono">Week 7</span>
+                                </div>
+                                <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle1">Article Review 1</h4>
+                                <p class="text-xs text-slate-400 mt-0.5" id="cdDate1">8 Nov 2026</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-borderMuted/60">
+                                <div class="grid grid-cols-4 gap-1 text-center font-mono">
+                                    <div><span class="text-sm font-bold text-bright" id="cd1-d">--</span><span class="block text-[9px] text-slate-500">D</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd1-h">--</span><span class="block text-[9px] text-slate-500">H</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd1-m">--</span><span class="block text-[9px] text-slate-500">M</span></div>
+                                    <div><span class="text-sm font-bold text-gold" id="cd1-s">--</span><span class="block text-[9px] text-slate-500">S</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Article Review 2 -->
+                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">15%</span>
+                                    <span class="text-[11px] text-slate-400 font-mono">Week 10</span>
+                                </div>
+                                <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle2">Article Review 2</h4>
+                                <p class="text-xs text-slate-400 mt-0.5" id="cdDate2">6 Dec 2026</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-borderMuted/60">
+                                <div class="grid grid-cols-4 gap-1 text-center font-mono">
+                                    <div><span class="text-sm font-bold text-bright" id="cd2-d">--</span><span class="block text-[9px] text-slate-500">D</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd2-h">--</span><span class="block text-[9px] text-slate-500">H</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd2-m">--</span><span class="block text-[9px] text-slate-500">M</span></div>
+                                    <div><span class="text-sm font-bold text-gold" id="cd2-s">--</span><span class="block text-[9px] text-slate-500">S</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Written Assignment -->
+                        <div class="rounded-2xl bg-surfaceLight/80 border border-gold/40 p-4 flex flex-col justify-between shadow-lg shadow-gold/5 transition-all">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/30">20%</span>
+                                    <span class="text-[11px] text-amber-300 font-mono">Week 13</span>
+                                </div>
+                                <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle3">Written Assignment</h4>
+                                <p class="text-xs text-slate-400 mt-0.5" id="cdDate3">27 Dec 2026</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-borderMuted/60">
+                                <div class="grid grid-cols-4 gap-1 text-center font-mono">
+                                    <div><span class="text-sm font-bold text-bright" id="cd3-d">--</span><span class="block text-[9px] text-slate-500">D</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd3-h">--</span><span class="block text-[9px] text-slate-500">H</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd3-m">--</span><span class="block text-[9px] text-slate-500">M</span></div>
+                                    <div><span class="text-sm font-bold text-gold" id="cd3-s">--</span><span class="block text-[9px] text-slate-500">S</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Presentation -->
+                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">10%</span>
+                                    <span class="text-[11px] text-slate-400 font-mono">Week 14</span>
+                                </div>
+                                <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle4">Presentation</h4>
+                                <p class="text-xs text-slate-400 mt-0.5" id="cdDate4">3 Jan 2027</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-borderMuted/60">
+                                <div class="grid grid-cols-4 gap-1 text-center font-mono">
+                                    <div><span class="text-sm font-bold text-bright" id="cd4-d">--</span><span class="block text-[9px] text-slate-500">D</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd4-h">--</span><span class="block text-[9px] text-slate-500">H</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd4-m">--</span><span class="block text-[9px] text-slate-500">M</span></div>
+                                    <div><span class="text-sm font-bold text-gold" id="cd4-s">--</span><span class="block text-[9px] text-slate-500">S</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5: Final Test (Online) -->
+                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">40%</span>
+                                    <span class="text-[11px] text-slate-400 font-mono">W16–18</span>
+                                </div>
+                                <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle5">Final Test (Online)</h4>
+                                <p class="text-xs text-slate-400 mt-0.5" id="cdDate5">11–31 Jan 2027</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-borderMuted/60">
+                                <div class="grid grid-cols-4 gap-1 text-center font-mono">
+                                    <div><span class="text-sm font-bold text-bright" id="cd5-d">--</span><span class="block text-[9px] text-slate-500">D</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd5-h">--</span><span class="block text-[9px] text-slate-500">H</span></div>
+                                    <div><span class="text-sm font-bold text-bright" id="cd5-m">--</span><span class="block text-[9px] text-slate-500">M</span></div>
+                                    <div><span class="text-sm font-bold text-gold" id="cd5-s">--</span><span class="block text-[9px] text-slate-500">S</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Overview & Chart Section -->
+        <section id="overview" class="scroll-mt-24 space-y-8">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-bright" id="overviewSectionHeading">Assessment Distribution & Semester Structure</h3>
+                <p class="text-sm text-slate-400 mt-1" id="overviewSectionSub">Weightage distribution and bilingual grading policy overview.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                <!-- Doughnut Chart -->
+                <div class="lg:col-span-5 bg-surface border border-borderMuted rounded-3xl p-6 glow-card flex flex-col items-center">
+                    <h4 class="text-sm font-mono uppercase tracking-wider text-slate-300 mb-6" id="chartCardHeading">Course Weightage Architecture</h4>
+                    <div class="relative w-64 h-64 sm:w-72 sm:h-72">
+                        <canvas id="assessmentChart"></canvas>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                            <span class="text-3xl font-black text-bright font-mono">100%</span>
+                            <span class="text-xs text-gold uppercase tracking-widest font-mono" id="chartCenterLabel">Total Mark</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 flex flex-wrap justify-center gap-3 text-xs text-slate-300">
+                        <span class="inline-flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-gold mr-1.5 ml-1.5"></span><span id="legendFt">Final Test (40%)</span></span>
+                        <span class="inline-flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-600 mr-1.5 ml-1.5"></span><span id="legendWa">Written Assign (20%)</span></span>
+                        <span class="inline-flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-yellow-500 mr-1.5 ml-1.5"></span><span id="legendAr1">Review 1 (15%)</span></span>
+                        <span class="inline-flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-400 mr-1.5 ml-1.5"></span><span id="legendAr2">Review 2 (15%)</span></span>
+                        <span class="inline-flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-slate-400 mr-1.5 ml-1.5"></span><span id="legendPr">Presentation (10%)</span></span>
+                    </div>
+                </div>
+
+                <!-- Assessment Table & Term Schedule -->
+                <div class="lg:col-span-7 bg-surface border border-borderMuted rounded-3xl p-6 sm:p-8 glow-card space-y-6">
+                    <div>
+                        <h4 class="text-base font-bold text-bright mb-4 flex items-center justify-between">
+                            <span id="tableTitle">Component Specifications</span>
+                            <span class="text-xs font-mono text-gold px-2.5 py-1 rounded-full bg-gold/10 border border-gold/20">ISI8003</span>
+                        </h4>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-sm">
+                                <thead class="border-b border-borderMuted text-xs font-mono uppercase text-slate-400">
+                                    <tr>
+                                        <th class="py-3 px-3" id="thAssessment">Assessment Item</th>
+                                        <th class="py-3 px-3" id="thSchedule">Scheduled Period</th>
+                                        <th class="py-3 px-3 text-center" id="thWeight">Weight</th>
+                                        <th class="py-3 px-3 text-right" id="thFormat">Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-borderMuted/60 text-slate-300">
+                                    <tr class="hover:bg-surfaceLight/50">
+                                        <td class="py-3 px-3 font-semibold text-bright" id="rowName1">Article Review 1</td>
+                                        <td class="py-3 px-3 font-mono text-xs text-slate-400" id="rowSched1">Week 7 (8 Nov 2026)</td>
+                                        <td class="py-3 px-3 text-center font-mono text-gold font-bold">15%</td>
+                                        <td class="py-3 px-3 text-right text-xs" id="rowFmt1">3–4 Pages PDF</td>
+                                    </tr>
+                                    <tr class="hover:bg-surfaceLight/50">
+                                        <td class="py-3 px-3 font-semibold text-bright" id="rowName2">Article Review 2</td>
+                                        <td class="py-3 px-3 font-mono text-xs text-slate-400" id="rowSched2">Week 10 (6 Dec 2026)</td>
+                                        <td class="py-3 px-3 text-center font-mono text-gold font-bold">15%</td>
+                                        <td class="py-3 px-3 text-right text-xs" id="rowFmt2">3–4 Pages PDF</td>
+                                    </tr>
+                                    <tr class="hover:bg-surfaceLight/50">
+                                        <td class="py-3 px-3 font-semibold text-bright" id="rowName3">Written Assignment</td>
+                                        <td class="py-3 px-3 font-mono text-xs text-slate-400" id="rowSched3">Week 13 (27 Dec 2026)</td>
+                                        <td class="py-3 px-3 text-center font-mono text-gold font-bold">20%</td>
+                                        <td class="py-3 px-3 text-right text-xs" id="rowFmt3">Max 10 Pages (APA)</td>
+                                    </tr>
+                                    <tr class="hover:bg-surfaceLight/50">
+                                        <td class="py-3 px-3 font-semibold text-bright" id="rowName4">Presentation</td>
+                                        <td class="py-3 px-3 font-mono text-xs text-slate-400" id="rowSched4">Week 14 (28 Dec–3 Jan)</td>
+                                        <td class="py-3 px-3 text-center font-mono text-gold font-bold">10%</td>
+                                        <td class="py-3 px-3 text-right text-xs" id="rowFmt4">Oral / Slide Defense</td>
+                                    </tr>
+                                    <tr class="hover:bg-surfaceLight/50">
+                                        <td class="py-3 px-3 font-semibold text-bright" id="rowName5">Final Test (Online)</td>
+                                        <td class="py-3 px-3 font-mono text-xs text-slate-400" id="rowSched5">Weeks 16–18 (11–31 Jan 2027)</td>
+                                        <td class="py-3 px-3 text-center font-mono text-gold font-bold">40%</td>
+                                        <td class="py-3 px-3 text-right text-xs" id="rowFmt5">Online Open Book</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Calendar highlights -->
+                    <div class="p-4 rounded-2xl bg-surfaceLight/50 border border-borderMuted flex items-center justify-between text-xs">
+                        <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <span class="text-xl">📅</span>
+                            <div>
+                                <span class="font-bold text-bright block" id="midtermNoticeTitle">Mid-Semester Break: 9 – 15 November 2026</span>
+                                <span class="text-slate-400" id="midtermNoticeSub">Revision Week: 4 – 10 January 2027 • Official OPR Period: 11 – 31 January 2027</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assignments Briefings -->
+        <section id="assignments" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-bright" id="assignHeading">Assignment Dossiers & Requirements</h3>
+                    <p class="text-sm text-slate-400 mt-1" id="assignSub">Exhaustive parameters, structural mandates, layman guidelines, and citation frameworks.</p>
+                </div>
+                <div class="inline-flex items-center space-x-2 rtl:space-x-reverse px-3 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono">
+                    <span>📋 All Requirements Unlocked</span>
+                </div>
+            </div>
+
+            <!-- Block 1: Article Reviews (1 & 2) + Layman's Guidance -->
+            <div class="bg-surface border border-borderMuted rounded-3xl p-6 sm:p-8 glow-card space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-borderMuted gap-2">
+                    <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                        <span class="text-2xl">🧐</span>
+                        <div>
+                            <h4 class="text-lg font-bold text-bright" id="revSectionTitle">Assignments 1 & 2: Article Reviews (30% Total)</h4>
+                            <p class="text-xs text-slate-400" id="revSectionSub">Independent scholarly critique of two published journal articles.</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono font-bold">15% + 15%</span>
+                </div>
+
+                <!-- Two Review Cards Grid -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-5 rounded-2xl bg-surfaceLight/60 border border-borderMuted hover:border-gold/30 transition-all">
+                        <div class="flex justify-between items-center">
+                            <h5 class="font-bold text-bright" id="rev1Title">Article Review 1</h5>
+                            <span class="text-xs font-mono text-gold bg-gold/10 px-2 py-0.5 rounded">15%</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-1" id="rev1DeadlineText">Deadline: Week 7 (Sunday, 8 Nov 2026, 23:59 GMT+8)</p>
+                        <ul class="mt-3 space-y-1.5 text-xs text-slate-300 list-disc list-inside">
+                            <li id="rev1Li1">Select one scholarly peer-reviewed article in Islamic science.</li>
+                            <li id="rev1Li2">Submit typed PDF format, 3–4 pages in length.</li>
+                            <li id="rev1Li3">Ground critiques in Islamic epistemological frameworks.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-surfaceLight/60 border border-borderMuted hover:border-gold/30 transition-all">
+                        <div class="flex justify-between items-center">
+                            <h5 class="font-bold text-bright" id="rev2Title">Article Review 2</h5>
+                            <span class="text-xs font-mono text-gold bg-gold/10 px-2 py-0.5 rounded">15%</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-1" id="rev2DeadlineText">Deadline: Week 10 (Sunday, 6 Dec 2026, 23:59 GMT+8)</p>
+                        <ul class="mt-3 space-y-1.5 text-xs text-slate-300 list-disc list-inside">
+                            <li id="rev2Li1">Focus on modern scientific controversy or bioethical discourse.</li>
+                            <li id="rev2Li2">Engage at least 5 scholarly references (APA preferred).</li>
+                            <li id="rev2Li3">Provide informed counterarguments and future research inquiries.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Layman's Practical Guide & Lecturer's Mandate (Your Opinion Matters) -->
+                <div class="p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 via-surfaceLight to-surface border border-gold/40 space-y-4">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <span class="text-xl">💡</span>
+                        <h5 class="text-sm font-bold text-gold uppercase tracking-wider font-mono" id="laymanGuideTitle">
+                            Layman's Guide & Search Protocol: How to Ace Your Article Reviews
+                        </h5>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <div class="space-y-2">
+                            <p class="font-semibold text-bright" id="laymanStep1Title">1. Where & What to Search (Google Scholar)</p>
+                            <p class="text-slate-400" id="laymanStep1Text">
+                                Go to Google Scholar (<span class="text-gold font-mono">scholar.google.com</span>) and find a published peer-reviewed academic journal article. Use targeted search keywords like:
+                            </p>
+                            <div class="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+                                <span class="px-2.5 py-1 rounded-lg bg-surface border border-borderMuted text-amber-300">[islamic science]</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-surface border border-borderMuted text-amber-300">[islamic philosophy of science]</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-surface border border-borderMuted text-amber-300">[islamic bioethics]</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <p class="font-semibold text-bright" id="laymanStep2Title">2. Highlight the Gaps & Limitations</p>
+                            <p class="text-slate-400" id="laymanStep2Text">
+                                Do not merely summarize or praise the article! A critical review means dissecting what the author missed, oversimplified, or failed to address. Identify weak assumptions, secular biases, or methodological gaps.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Badge: Your Opinion is What Counts -->
+                    <div class="p-4 rounded-xl bg-obsidian/80 border border-gold/40 flex items-start space-x-3 rtl:space-x-reverse">
+                        <span class="text-2xl">🎯</span>
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-gold font-mono font-bold block" id="opinionBannerHeading">Lecturer's Direct Expectation</span>
+                            <p class="text-sm font-bold text-bright mt-0.5" id="opinionBannerQuote">
+                                "I need your opinion — your opinion is what counts!"
+                            </p>
+                            <p class="text-xs text-slate-400 mt-1" id="opinionBannerDesc">
+                                Stand your ground intellectually. Don't be shy to challenge the author's conclusions using sound Islamic epistemic logic. We want your analytical voice, critical stance, and original philosophical assessment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Structure Breakdown -->
+                <div class="p-5 rounded-2xl bg-surfaceLight/40 border border-borderMuted">
+                    <h5 class="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono mb-3" id="rubricTitle">Required Critical Review Anatomy</h5>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs text-slate-300">
+                        <div class="p-3 rounded-xl bg-obsidian/40 border border-borderMuted/80">
+                            <span class="font-bold text-bright block mb-1" id="rub1">1. Thesis & Scope</span>
+                            <span class="text-slate-400" id="rub1d">Summary of central arguments, methodologies, and core hypotheses.</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-obsidian/40 border border-borderMuted/80">
+                            <span class="font-bold text-bright block mb-1" id="rub2">2. Axiological Assumptions</span>
+                            <span class="text-slate-400" id="rub2d">Underlying philosophical worldview, secular vs tawhidic premises.</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-obsidian/40 border border-borderMuted/80">
+                            <span class="font-bold text-bright block mb-1" id="rub3">3. Scholarly Critique & Voice</span>
+                            <span class="text-slate-400" id="rub3d">Your independent evaluation of gaps, blind spots, and counter-perspectives.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 2: Assignment 3 - Written Assignment -->
+            <div class="bg-surface border border-gold/40 rounded-3xl p-6 sm:p-8 glow-card space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-borderMuted gap-2">
+                    <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                        <span class="text-2xl">✍️</span>
+                        <div>
+                            <h4 class="text-lg font-bold text-bright" id="waDossierTitle">Assignment 3: Major Written Treatise / Scholarly Article</h4>
+                            <p class="text-xs text-slate-400" id="waDeadlineFull">Deadline: Week 13 (Sunday, 27 December 2026, 23:59 GMT+8) • Weight: 20%</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <span class="px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono font-bold">Min 5 References</span>
+                        <span class="px-3 py-1 rounded-full bg-surfaceLight border border-borderMuted text-slate-300 text-xs font-mono">Max 10 Pages</span>
+                    </div>
+                </div>
+
+                <!-- Written Assignment Instructions Callout with Link to Formulator -->
+                <div class="p-5 rounded-2xl bg-surfaceLight/60 border border-borderMuted text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <h5 class="font-bold text-bright text-sm" id="waArticleMandateTitle">Article Writing Requirement:</h5>
+                            <p class="text-slate-400 mt-1" id="waArticleMandateDesc">
+                                Students must write an original scholarly article. The treatise must engage with a <strong>minimum of 5 academic references</strong> (peer-reviewed journals or seminal texts), properly cited in APA 7th format.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Direct link to Generator -->
+                    <div class="p-4 rounded-xl bg-gradient-to-r from-obsidian to-surface border border-gold/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <span class="text-2xl">🧪</span>
+                            <div>
+                                <span class="font-bold text-bright block text-xs sm:text-sm" id="waInspirationTitle">Need Topic Inspiration?</span>
+                                <span class="text-xs text-slate-400" id="waInspirationSub">Refer to the <strong>Interdisciplinary Topic & Thesis Formulator</strong> below to synthesize custom interdisciplinary titles.</span>
+                            </div>
+                        </div>
+                        <a href="#directory" class="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-gold hover:bg-goldHover text-obsidian text-xs font-bold transition-all shrink-0">
+                            <span id="waJumpBtn">Jump to Thesis Formulator ↓</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4 Designated Prompts -->
+                <div>
+                    <h5 class="text-xs font-mono uppercase text-gold tracking-wider mb-3" id="waPromptHeader">Core Course Tracks (Or Synthesize Your Own Topic Below):</h5>
+                    <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                        <div class="p-4 rounded-2xl bg-surfaceLight/70 border border-borderMuted hover:border-gold/40 transition-all">
+                            <span class="font-mono text-gold font-bold">Prompt 01</span>
+                            <h6 class="font-bold text-bright text-sm mt-1" id="pr1Title">Maqasid al-Shariah & Technology</h6>
+                            <p class="text-slate-400 mt-1 leading-relaxed" id="pr1Desc">Discuss how the 5 major objectives preserve human welfare amid rapid technological disruption.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-surfaceLight/70 border border-borderMuted hover:border-gold/40 transition-all">
+                            <span class="font-mono text-gold font-bold">Prompt 02</span>
+                            <h6 class="font-bold text-bright text-sm mt-1" id="pr2Title">Creation & Interconnectedness</h6>
+                            <p class="text-slate-400 mt-1 leading-relaxed" id="pr2Desc">The Qur'an urges observing cosmic signs (Ayat). Examine ecological interconnectedness in Tawhidic thought.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-surfaceLight/70 border border-borderMuted hover:border-gold/40 transition-all">
+                            <span class="font-mono text-gold font-bold">Prompt 03</span>
+                            <h6 class="font-bold text-bright text-sm mt-1" id="pr3Title">Modern Science & Morality</h6>
+                            <p class="text-slate-400 mt-1 leading-relaxed" id="pr3Desc">Analyze the systemic perils of divorcing moral-spiritual virtues from empirical inquiry and human sciences.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-surfaceLight/70 border border-borderMuted hover:border-gold/40 transition-all">
+                            <span class="font-mono text-gold font-bold">Prompt 04</span>
+                            <h6 class="font-bold text-bright text-sm mt-1" id="pr4Title">Golden Age Polymath Monograph</h6>
+                            <p class="text-slate-400 mt-1 leading-relaxed" id="pr4Desc">Analyze a classical Muslim scholar's contributions, intellectual controversies, and lasting epistemological legacy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formatting Specs -->
+                <div class="grid sm:grid-cols-4 gap-3 text-center text-xs font-mono">
+                    <div class="p-3 rounded-xl bg-obsidian/60 border border-borderMuted"><span class="text-slate-500 block">Typography</span><span class="font-bold text-bright">Times New Roman 12</span></div>
+                    <div class="p-3 rounded-xl bg-obsidian/60 border border-borderMuted"><span class="text-slate-500 block">Line Spacing</span><span class="font-bold text-bright">1.5 Spacing</span></div>
+                    <div class="p-3 rounded-xl bg-obsidian/60 border border-borderMuted"><span class="text-slate-500 block">Max Length</span><span class="font-bold text-bright">10 Pages (Excl. Refs)</span></div>
+                    <div class="p-3 rounded-xl bg-obsidian/60 border border-borderMuted"><span class="text-slate-500 block">Citations</span><span class="font-bold text-bright">APA 7th (Min 5 Refs)</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Topic & Thesis Directory + Interactive 50x50 Title Generator -->
+        <section id="directory" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center space-x-2 rtl:space-x-reverse text-gold font-mono text-xs uppercase tracking-wider mb-2">
+                        <span>🧪 50x50 Synthesis Engine</span>
+                        <span>•</span>
+                        <span>2,500 Combinations</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-bright" id="dirMainHeading">Interdisciplinary Topic & Thesis Formulator</h3>
+                    <p class="text-sm text-slate-400 mt-1" id="dirSubHeading">Synthesize novel research themes by pairing classical Islamic philosophical frameworks with contemporary scientific and socio-legal inquiries.</p>
+                </div>
+            </div>
+
+            <!-- Interdisciplinary Title Generator Card -->
+            <div class="rounded-3xl bg-gradient-to-b from-surface to-obsidian border-2 border-gold/30 p-6 sm:p-8 glow-gold space-y-6">
+                <div class="flex items-center justify-between pb-4 border-b border-borderMuted">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <span class="text-xl">✨</span>
+                        <h4 class="text-base font-bold text-bright font-mono uppercase tracking-wider" id="generatorCardTitle">Research Thesis Title Synthesizer</h4>
+                    </div>
+                    <button onclick="randomizeThesisTitle()" class="flex items-center space-x-2 rtl:space-x-reverse px-3 py-1.5 rounded-xl bg-gold/10 hover:bg-gold/20 text-gold border border-gold/30 text-xs font-mono font-bold transition-all">
+                        <span>🎲</span>
+                        <span id="btnRandomizeTitle">Randomize Pairing</span>
+                    </button>
+                </div>
+
+                <!-- Dropdown Selectors Grid -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Dropdown 1: Islamic Frameworks (50 options) -->
+                    <div class="space-y-2">
+                        <label for="selectIslamicPillar" class="block text-xs font-mono uppercase text-slate-300 font-semibold" id="lblIslamicPillar">
+                            1. Islamic Epistemological Framework (50 Choices)
+                        </label>
+                        <select id="selectIslamicPillar" onchange="generateInterdisciplinaryTitle()" class="w-full bg-surfaceLight border border-borderMuted rounded-xl px-4 py-3 text-sm text-bright focus:outline-none focus:border-gold transition-colors font-sans">
+                            <!-- Populated dynamically via JS with optgroups -->
+                        </select>
+                    </div>
+
+                    <!-- Dropdown 2: Scientific & Socio-Legal Fields (50 options) -->
+                    <div class="space-y-2">
+                        <label for="selectSciencePillar" class="block text-xs font-mono uppercase text-slate-300 font-semibold" id="lblSciencePillar">
+                            2. Scientific, Legal & Sustainability Domain (50 Choices)
+                        </label>
+                        <select id="selectSciencePillar" onchange="generateInterdisciplinaryTitle()" class="w-full bg-surfaceLight border border-borderMuted rounded-xl px-4 py-3 text-sm text-bright focus:outline-none focus:border-gold transition-colors font-sans">
+                            <!-- Populated dynamically via JS with optgroups -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Generated Output Showcase -->
+                <div class="p-6 rounded-2xl bg-surfaceLight/80 border border-gold/40 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono uppercase text-gold tracking-widest" id="lblSynthesizedTopic">Synthesized Research Thesis Proposition</span>
+                        <span class="text-xs font-mono text-slate-400" id="genPillarTags">[Category] • Pillar</span>
+                    </div>
+
+                    <div class="text-base sm:text-lg md:text-xl font-bold text-bright tracking-tight leading-relaxed italic" id="generatedTitleDisplay">
+                        "Loading interdisciplinary formulation..."
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-300 border-t border-borderMuted/60 pt-3 leading-relaxed" id="generatedRationaleDisplay">
+                        Loading research inquiry rationale...
+                    </p>
+
+                    <div class="flex items-center justify-end pt-2">
+                        <button id="btnCopyGeneratedTitle" onclick="copyGeneratedThesis()" class="flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 rounded-xl bg-surface border border-borderMuted hover:border-gold text-slate-200 text-xs font-semibold transition-all">
+                            <span>📋</span>
+                            <span id="btnCopyTitleText">Copy Formulated Thesis</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Standard Curated Directory Accordion -->
+            <div class="space-y-4 pt-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <h4 class="text-base font-bold text-bright font-mono uppercase tracking-wider" id="curatedHeading">Core Curated Islamic Science Disciplines</h4>
+                    <div class="flex space-x-2 rtl:space-x-reverse">
+                        <button onclick="toggleAllAccordions(true)" class="px-3 py-1 rounded-lg bg-surfaceLight border border-borderMuted text-xs text-slate-300 hover:text-gold" id="btnExpandAll">Expand All</button>
+                        <button onclick="toggleAllAccordions(false)" class="px-3 py-1 rounded-lg bg-surfaceLight border border-borderMuted text-xs text-slate-300 hover:text-gold" id="btnCollapseAll">Collapse All</button>
+                    </div>
+                </div>
+
+                <div id="topicsAccordionContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-borderMuted bg-surface py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                <span class="text-gold font-bold">ISI8003</span>
+                <span>•</span>
+                <span id="footerDept">Philosophy of Islamic Science • Faculty of Quranic and Sunnah Studies</span>
+            </div>
+            <div class="font-mono text-slate-400">
+                Semester 2026/2027 • Executive Academic Guide
+            </div>
+        </div>
+    </footer>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        // --- 50 ISLAMIC FRAMEWORKS & EPISTEMOLOGY PILLARS ---
+        const islamicCategories = [
+            {
+                group_en: "1. Maqasid al-Shariah & Higher Objectives (1-10)",
+                group_ar: "١. مقاصد الشريعة والغايات العليا (١-١٠)",
+                items: [
+                    { id: "maq_din", name_en: "Hifz al-Din (Preservation of Faith & Axiology)", name_ar: "حفظ الدين (صيانة الهوية المعرفية والمنظومة القيمية)", conn_en: "Preservation of Faith and Axiological Grounding in", conn_ar: "حفظ الدين والتحصين القيمي في سياق" },
+                    { id: "maq_nafs", name_en: "Hifz al-Nafs (Sanctity & Protection of Life)", name_ar: "حفظ النفس (حرمة الحياة البشرية وكرامتها)", conn_en: "The Sanctity of Life (Hifz al-Nafs) and Human Dignity in", conn_ar: "مبدأ حفظ النفس والكرامة الإنسانية إزاء" },
+                    { id: "maq_aql", name_en: "Hifz al-Aql (Protection of Intellect & Cognition)", name_ar: "حفظ العقل (حماية الإدراك والتفكير الرشيد)", conn_en: "Protection of Cognitive Sovereignty and Rational Agency in", conn_ar: "حفظ العقل والسيادة الإدراكية المعرفية في ظل" },
+                    { id: "maq_nasl", name_en: "Hifz al-Nasl (Protection of Progeny & Lineage)", name_ar: "حفظ النسل والعرض (حماية السلالة والأجيال)", conn_en: "Safeguarding Intergenerational Lineage and Progeny in", conn_ar: "حفظ النسل وحقوق الأجيال المستقبلية أمام" },
+                    { id: "maq_mal", name_en: "Hifz al-Mal (Wealth Stewardship & Distributive Justice)", name_ar: "حفظ المال (التداول العادل والأمانة الاقتصادية)", conn_en: "Wealth Stewardship and Equitable Circulation (Hifz al-Mal) in", conn_ar: "حفظ المال والعدالة التوزيعية في منظومة" },
+                    { id: "maq_biah", name_en: "Hifz al-Bi'ah (Contemporary Objective: Ecological Preservation)", name_ar: "حفظ البيئة والمحيط الحيوي (مقصد معاصر)", conn_en: "The Ecological Shariah Objective (Hifz al-Bi'ah) Applied to", conn_ar: "المقصد البيئي وحفظ المحيط الطبيعي في معالجة" },
+                    { id: "maq_adl", name_en: "Hifz al-Adl (Universal Justice & Anti-Oppression)", name_ar: "حفظ العدل ومناهضة الاستغلال", conn_en: "Universal Shariah Justice (Al-Adl) as a Restraining Benchmark for", conn_ar: "ميزان العدل ومناهضة التغول المؤسسي في" },
+                    { id: "maq_hurriyah", name_en: "Hifz al-Hurriyyah (Protection of Autonomy & Moral Agency)", name_ar: "حفظ الحرية والمسؤولية التكليفية", conn_en: "Moral Agency and Shariah Liberties (Al-Hurriyyah) Confronting", conn_ar: "حفظ الحرية والمسؤولية الأخلاقية في مواجهة" },
+                    { id: "maq_amn", name_en: "Hifz al-Amn (Public Safety & Existential Security)", name_ar: "حفظ الأمن الشامل والسلام المجتمعي", conn_en: "Societal Tranquility and Existential Security (Hifz al-Amn) in", conn_ar: "حفظ الأمن والاستقرار المجتمعي في مواجهة" },
+                    { id: "maq_taysir", name_en: "Raf' al-Haraj & Taysir (Relief of Hardship)", name_ar: "رفع الحرج وقاعدة التيسير التشريعي", conn_en: "The Principle of Mitigating Undue Hardship (Raf' al-Haraj) in", conn_ar: "رفع الحرج وتطبيقات التيسير الفقهي في" }
+                ]
+            },
+            {
+                group_en: "2. Epistemology, Tawhid & Ilm al-Kalam (11-20)",
+                group_ar: "٢. نظرية المعرفة والتوحيد وعلم الكلام (١١-٢٠)",
+                items: [
+                    { id: "tawhid_ont", name_en: "Tawhidic Epistemology (Unity of Truth & Nature)", name_ar: "التوحيد المعرفي (وحدة الحقيقة والكون)", conn_en: "Tawhidic Epistemological Foundations Reconciling", conn_ar: "التوحيد ونظرية تكامل المعارف الكونية في" },
+                    { id: "kalam_asbab", name_en: "Ash'arite/Maturidite Causality & Occasionalism (Kalam)", name_ar: "السببية الكلامية ونظرية العادة (علم الكلام)", conn_en: "Kalam Philosophy of Causality and Secondary Causes in", conn_ar: "السببية ونظرية العادة الكلامية في قراءة" },
+                    { id: "mutazila_adl", name_en: "Rationalist Ethics & Objective Morality (Mu'tazili/Maturidi)", name_ar: "التحسين والتقبيح العقلي والعدل الإلهي", conn_en: "Rational Ethical Realism and Objective Good/Harm in", conn_ar: "التحسين والتقبيح العقلي ومسؤولية الإنسان الأخلاقية في" },
+                    { id: "fitrah_anthrop", name_en: "Fitrah (Innate Human Disposition & Nature)", name_ar: "مفهوم الفطرة والجوهر الإنساني الأصيل", conn_en: "Preservation of Primordial Fitrah Against Artificial Alteration in", conn_ar: "حماية الفطرة الإنسانية من التشويه والتحوير في" },
+                    { id: "wahy_aql", name_en: "Harmony of Revelation & Reason (Ibn Rushd / Al-Ghazali)", name_ar: "التوفيق بين المعقول والمنقول (ابن رشد / الغزالي)", conn_en: "Harmonizing Rational Empiricism and Transcendent Revelation in", conn_ar: "جدلية العقل والنقل والتأسيس المنهجي لـ" },
+                    { id: "ilm_nafi", name_en: "Ilm Nafi' (Beneficial Knowledge vs Harmful Inquiry)", name_ar: "مفهوم العلم النافع وتمييزه عن العلم الضار", conn_en: "The Ethico-Epistemic Criterion of 'Beneficial Science' (Ilm Nafi') in", conn_ar: "معيار العلم النافع والمسؤولية الغائية للبحث العلمي في" },
+                    { id: "tazkiyah_sc", name_en: "Tazkiyah (Spiritual Purification & Ethical Science)", name_ar: "التزكية الروحية والأخلاق العلمية", conn_en: "Epistemic Humility and Spiritual Purposiveness (Tazkiyah) in", conn_ar: "تزكية النفس وبناء الضمير العلمي الرقابي في" },
+                    { id: "ayatan_kaun", name_en: "Ayat Kauniyyah (Cosmic Signs & Empirical Wonder)", name_ar: "الآيات الكونية والشهود الحضاري للطبيعة", conn_en: "The Qur'anic Discourse of Cosmic Signs (Ayat) Demystifying", conn_ar: "دلالة الآيات الكونية والتدبر العلمي التوحيدي في" },
+                    { id: "maratib_ilm", name_en: "Maratib al-Ulum (Hierarchy of Knowledge - Al-Attas)", name_ar: "مراتب العلوم وتصنيف المعارف (العطاس)", conn_en: "De-secularizing Epistemic Hierarchies (Islamization of Knowledge) in", conn_ar: "مراتب العلوم وأسلمة المعرفة المعاصرة في" },
+                    { id: "yaqin_zann", name_en: "Epistemic Certainty (Yaqin) vs Probabilistic Conjectures (Zann)", name_ar: "فقه اليقين والظن والموثوقية المعرفية", conn_en: "Navigating Epistemic Uncertainty and Scientific Indeterminacy via", conn_ar: "منازل اليقين والظن وترجيح الأدلة الاستدلالية في" }
+                ]
+            },
+            {
+                group_en: "3. Legal Maxims - Qawa'id Fiqhiyyah (21-30)",
+                group_ar: "٣. القواعد الفقهية الكلية (٢١-٣٠)",
+                items: [
+                    { id: "qaw_darar", name_en: "La Darar wa-la Dirar (Harm Must Be Eliminated)", name_ar: "قاعدة لا ضرر ولا ضرار وإزالة المفاسد", conn_en: "The Maxim of Harm Prohibition and Risk Neutralization in", conn_ar: "قاعدة لا ضرر ولا ضرار ودرء الأخطار الكامنة في" },
+                    { id: "qaw_sad_dharai", name_en: "Sadd al-Dhara'i (Blocking the Means to Evil)", name_ar: "قاعدة سد الذرائع والاحتراز الوقائي", conn_en: "Precautionary Deterrence and Blocking Illicit Means (Sadd al-Dhara'i) in", conn_ar: "سد الذرائع والمنهجية الوقائية الاحترازية إزاء" },
+                    { id: "qaw_maslahah", name_en: "Maslahah Mursalah (Unrestricted Public Interest)", name_ar: "المصلحة المرسلة والتوازن الاجتماعي", conn_en: "Appraisal of Dynamic Public Interest (Maslahah Mursalah) within", conn_ar: "فقه المصلحة المرسلة والموازنة الاستصلاحية في" },
+                    { id: "qaw_darurah", name_en: "Al-Darurat Tubih al-Mahzurat (Necessity Overrides Prohibition)", name_ar: "الضرورات تبيح المحظورات وتقيد بقدرها", conn_en: "The Jurisprudence of Exceptional Necessity (Fiqh al-Darurah) in", conn_ar: "فقه الضرورة وتحديد الاستثناءات الاستعجالية في" },
+                    { id: "qaw_mashaqqah", name_en: "Al-Mashaqqah Tajlib al-Taysir (Hardship Begets Facility)", name_ar: "المشقة تجلب التيسير وتخفيف الأعباء", conn_en: "Regulatory Accommodation and Pragmatic Mitigation (Al-Mashaqqah) in", conn_ar: "قاعدة المشقة تجلب التيسير والتطبيقات المرنة لـ" },
+                    { id: "qaw_yaqin_shakk", name_en: "Al-Yaqin La Yazulu bi-al-Shakk (Certainty Not Overruled by Doubt)", name_ar: "اليقين لا يزول بالشك وتثبيت البراءة", conn_en: "Evidentiary Presumption and Scientific Certainty (Al-Yaqin) in", conn_ar: "قاعدة اليقين لا يزول بالشك وإثبات المسؤولية في" },
+                    { id: "qaw_urf", name_en: "Al-Adah Muhakkamah (Custom & Contextual Precedents)", name_ar: "العادة محكمة ومراعاة الأعراف المعاصرة", conn_en: "Normative Customary Standards (Al-Urf) and Scientific Consensus in", conn_ar: "العادة محكمة واعتبار المعايير المهنية والعرفية في" },
+                    { id: "qaw_khalf_aql", name_en: "Dar' al-Mafasid Muqaddam ala Jalb al-Masalih (Warding Off Harm Prioritized)", name_ar: "درء المفاسد مقدم على جلب المصالح", conn_en: "Prioritizing Systemic Harm Reduction over Commercial Utility in", conn_ar: "تقديم درء المفاسد على جلب المصالح في حوكمة" },
+                    { id: "qaw_tahawwul", name_en: "Istihalah & Istihlak (Transformation & Negation of Prohibited Substances)", name_ar: "الاستحالة والاستهلاك الكيميائي الفقهي", conn_en: "Chemical Transformation (Istihalah) and Shariah Purity Standards in", conn_ar: "فقه الاستحالة والاستهلاك ومعايير الحلال في" },
+                    { id: "qaw_ighlaq", name_en: "Ibtila' bi-Umum al-Balwa (Common Affliction & Inevitable Exposures)", name_ar: "عموم البلوى والتعامل مع الإكراهات العامة", conn_en: "Mitigating Systemic Inevitabilities (Umum al-Balwa) within Modern", conn_ar: "فقه عموم البلوى والتعاطي الواقعي مع تحديات" }
+                ]
+            },
+            {
+                group_en: "4. Stewardship, Ecology & Public Trust (31-40)",
+                group_ar: "٤. الاستخلاف والأمانة والبيئة (٣١-٤٠)",
+                items: [
+                    { id: "khalifah_ard", name_en: "Khilafah (Cosmic Stewardship & Ecological Trusteeship)", name_ar: "الاستخلاف في الأرض والأمانة الكونية", conn_en: "The Vicegerency (Khilafah) Paradigm and Environmental Custodianship in", conn_ar: "مبدأ الاستخلاف في الأرض والأمانة البيئية إزاء" },
+                    { id: "amanah_sc", name_en: "Al-Amanah (The Sacred Trust & Accountability)", name_ar: "الأمانة التكليفية والمساءلة الأخلاقية", conn_en: "Fiduciary Accountability and Sacred Trusteeship (Al-Amanah) in", conn_ar: "الأمانة العلمية والمحاسبة الأخلاقية في إدارة" },
+                    { id: "mizan_tawazun", name_en: "Al-Mizan (Cosmic Balance & Planetary Equilibrium)", name_ar: "الميزان والاتزان البيئي والكوني", conn_en: "Restoring Planetary Equilibrium (Al-Mizan) and Combating Corruption in", conn_ar: "حفظ الميزان الكوني ومكافحة الإفساد الإيكولوجي في" },
+                    { id: "fasad_ard", name_en: "Nahy an al-Fasad fi al-Ard (Prohibition of Ecological & Social Ruin)", name_ar: "النهي عن الإفساد في الأرض والتلويث", conn_en: "The Qur'anic Ban on Ecological Corruption (Fasad fi al-Ard) Deterring", conn_ar: "النهي عن الإفساد في الأرض وتجريم الأضرار البيئية لـ" },
+                    { id: "hima_harim", name_en: "Al-Hima & Harim (Conservation Sanctuaries & Buffer Zones)", name_ar: "مؤسسة الحمى والحريم والمحميات الطبيعية", conn_en: "Historical Hima Conservation Institutions Informing Modern", conn_ar: "نظام الحمى والحريم التراثي كمدخل لحوكمة" },
+                    { id: "ihya_mawat", name_en: "Ihya' al-Mawat (Revivification of Barren Lands)", name_ar: "إحياء الموات واستصلاح الموارد المهملة", conn_en: "The Agrarian Fiqh of Land Revivification (Ihya' al-Mawat) Guiding", conn_ar: "فقه إحياء الموات والاستدامة الزراعية في ظل" },
+                    { id: "haqq_biah", name_en: "Haqq al-Bi'ah wa-Rifq bi-al-Hayawan (Animal Welfare & Non-Human Rights)", name_ar: "الرفق بالحيوان وحقوق الكائنات غير البشرية", conn_en: "Non-Human Rights and Animal Compassion (Rifq bi-al-Hayawan) in", conn_ar: "الرفق بالحيوان والحقوق الحيوية للكائنات في تجارب" },
+                    { id: "waqf_biah", name_en: "Environmental Waqf (Pious Endowments for Sustainability)", name_ar: "الوقف الأخضر والاستدامة التمويلية", conn_en: "Green Waqf Instruments Catalyzing Sustainable Transition in", conn_ar: "الوقف البيئي والاستثماري لدعم مبادرات" },
+                    { id: "israf_tabdhir", name_en: "Dhamm al-Israf wa-al-Tabdhir (Anti-Consumerism & Waste Abatement)", name_ar: "ذم الإسراف والتبذير وترشيد الاستهلاك", conn_en: "Proscription of Reckless Waste (Israf/Tabdhir) Governing Circularity in", conn_ar: "ترشيد الاستهلاك ومحاربة التبذير في نماذج" },
+                    { id: "mushtarak_aam", name_en: "Al-Mushtarak al-Aam (Commons: Water, Pasture & Fire)", name_ar: "الملكية العامة والمشتركات الإنسانية الثلاثة", conn_en: "Public Ownership of Commons (Al-Mushtarak al-Aam) and Fair Access to", conn_ar: "المشتركات العامة وضمان العدالة في توزيع موارد" }
+                ]
+            },
+            {
+                group_en: "5. Civilizational, Social & Political Thought (41-50)",
+                group_ar: "٥. الفكر الحضاري والعمراني والسياسي (٤١-٥٠)",
+                items: [
+                    { id: "khaldun_umran", name_en: "Ibn Khaldun's Ilm al-Umran (Civilizational Sociology)", name_ar: "علم العمران البشري والطبائع المدنية (ابن خلدون)", conn_en: "Khaldunian Civilizational Dynamics (Ilm al-Umran) Diagnosing", conn_ar: "علم العمران البشري والتحولات الديموغرافية الناتجة عن" },
+                    { id: "khaldun_asabiyyah", name_en: "Asabiyyah (Social Cohesion & Group Solidarity)", name_ar: "العصبية والتضامن الاجتماعي والتماسك", conn_en: "Social Cohesion (Asabiyyah) and Collective Resilience Against", conn_ar: "العصبية والتماسك الاجتماعي في مواجهة تفكك" },
+                    { id: "siyasah_shariyyah", name_en: "Al-Siyasah al-Shari'iyyah (Shariah-Compliant Public Policy & Governance)", name_ar: "السياسة الشرعية وتدبير الشأن العام", conn_en: "Pragmatic Shariah Statecraft (Al-Siyasah al-Shari'iyyah) Regulating", conn_ar: "السياسة الشرعية وحوكمة القطاعات الاستراتيجية في" },
+                    { id: "shura_deliberate", name_en: "Al-Shura (Participatory Consultation & Collective Decision)", name_ar: "مبدأ الشورى والمداولة المجتمعية الرشيدة", conn_en: "Deliberative Democracy and Shuratic Governance Confronting", conn_ar: "منظومة الشورى والمشاركة الشعبية في مراقبة" },
+                    { id: "hisbah_market", name_en: "Al-Hisbah (Market Oversight & Public Consumer Protection)", name_ar: "نظام الحسبة والرقابة الأخلاقية على الأسواق", conn_en: "The Hisbah Regulatory Model for Consumer and Ethical Oversight in", conn_ar: "مؤسسة الحسبة والرقابة التفتيشية المستقلة على" },
+                    { id: "ijtihad_jamai", name_en: "Ijtihad Jama'i (Collective Juristic-Scientific Reasoning)", name_ar: "الاجتهاد الجماعي والمجامع الفقهية المتخصصة", conn_en: "Collective Institutional Ijtihad Unifying Scientists and Jurists on", conn_ar: "الاجتهاد الجماعي والمجالس الاستشارية المشتركة في قضايا" },
+                    { id: "farabi_madinah", name_en: "Al-Farabi's Virtuous City (Al-Madinah al-Fadilah)", name_ar: "المدينة الفاضلة والسياسة الأخلاقية (الفارابي)", conn_en: "Farabian Philosophical Ideals of the Virtuous Polis Re-imagining", conn_ar: "فلسفة المدينة الفاضلة والارتقاء الإنساني في عصر" },
+                    { id: "ghazali_tadlis", name_en: "Al-Ghazali's Critique of Technocratic Pseudo-Certainty", name_ar: "نقد الغزالي للغرور العلمي والمادية الاختزالية", conn_en: "Ghazalian Critique of Reductionist Positivism Critiquing Modern", conn_ar: "نقد الغزالي للإفراط الوضعي والمادية التقنية في" },
+                    { id: "ahd_dhimmah", name_en: "Al-Ahd wa-al-Mithaq (Covenants, Treaties & Global Ethics)", name_ar: "العهد والميثاق والوفاء بالمعاهدات الدولية", conn_en: "Sanctity of Covenants and International Treaties (Al-Ahd) in", conn_ar: "فقه المعاهدات والمواثيق الدولية الملزمة في مجال" },
+                    { id: "adab_bahth", name_en: "Adab al-Bahth wa-al-Munazarah (Dialectical Rigor & Scientific Ethics)", name_ar: "أدب البحث والمناظرة والأمانة الأكاديمية", conn_en: "Classical Scholastic Debate Protocols (Adab al-Bahth) Reforming", conn_ar: "أدب البحث والمناظرة ونزاهة الأقران في تمحيص" }
+                ]
+            }
+        ];
+
+        // --- 50 SCIENTIFIC, LEGAL, SOCIAL, ENVIRONMENTAL & SUSTAINABILITY FIELDS ---
+        const scienceCategories = [
+            {
+                group_en: "1. Artificial Intelligence & Frontier Technology (1-10)",
+                group_ar: "١. الذكاء الاصطناعي والتقنيات الناشئة (١-١٠)",
+                items: [
+                    { id: "ai_alg_bias", category: "Law & Ethics", name_en: "Algorithmic Bias, Autonomous Liability & Machine Agency", name_ar: "التحيز الخوارزمي والمسؤولية القانونية للأنظمة الذاتية", topic_en: "Autonomous AI Liability, Algorithmic Transparency, and Legal Personality", topic_ar: "المسؤولية القانونية والمدنية للأنظمة الخوارزمية المستقلة", rat_en: "Examines moral accountability, liability attribution, and justice metrics when predictive algorithms make life-altering decisions.", rat_ar: "يفحص المسؤولية الأخلاقية والمدنية والجنائية عندما تتخذ الخوارزميات قرارات حاسمة تمس العدالة وحياة الأفراد." },
+                    { id: "ai_gen_deepfake", category: "Social Sciences", name_en: "Generative AI, Deepfakes & Epistemic Truth Decay", name_ar: "الذكاء الاصطناعي التوليدي والتزييف العميق وتآكل الحقيقة", topic_en: "Deepfake Synthesis, Epistemic Distortion, and Information Integrity", topic_ar: "التزييف العميق وتشويه الحقائق والأدلة الرقمية", rat_en: "Investigates societal trust erosion, falsification of historical records, and the collapse of empirical evidence verification.", rat_ar: "يبحث في تراجع موثوقية الشهادات وتزييف الوقائع المجتمعية وأدلة الإثبات الجنائي والمعرفي." },
+                    { id: "ai_autonomous_weapons", category: "Political & Military", name_en: "Lethal Autonomous Weapons Systems (LAWS) & Drone Warfare", name_ar: "الأسلحة الفتاكة ذاتية التشغيل وحروب الطائرات المسيرة", topic_en: "Lethal Autonomous Weapon Systems (LAWS) and the Delegation of Life-and-Death Decisions", topic_ar: "الأسلحة الفتاكة ذاتية التشغيل وتفويض قرارات القتل للآلات", rat_en: "Assesses international humanitarian law, automated warfare, and the dehumanization of armed conflict.", rat_ar: "يقيم القانون الدولي الإنساني وتفويض القتل للآلات وتجريد الحروب من الضمير الإنساني." },
+                    { id: "ai_neurotech_bci", category: "Biomedical & Law", name_en: "Neural Implants, Brain-Computer Interfaces & Cognitive Liberty", name_ar: "الواجهات الدماغية الحاسوبية والخصوصية العصبية والحرية الإدراكية", topic_en: "Brain-Computer Interfaces (BCI), Neuro-Surveillance, and Cognitive Sovereignty", topic_ar: "الواجهات الدماغية الحاسوبية وقرصنة الأفكار والحرية العصبية", rat_en: "Analyzes mental privacy, thought alteration, and the boundaries of invasive neurological interventions.", rat_ar: "يحلل خصوصية التفكير العصبي وحماية الإرادة الحرة من التحكم والقرصنة البيولوجية المباشرة." },
+                    { id: "ai_workplace_displace", category: "Economics & Labour", name_en: "Automation, Worker Dislocation & Post-Labor Dignity", name_ar: "أتمتة الوظائف والبطالة التقنية والكرامة الإنسانية للعمال", topic_en: "Technological Unemployment, Universal Basic Welfare, and the Dignity of Human Labor", topic_ar: "البطالة التكنولوجية والأتمتة والكرامة الإنسانية للطبقة العاملة", rat_en: "Evaluates the existential consequences of labor obsolescence and wealth concentration among technocratic monopolies.", rat_ar: "يعالج اختفاء المهن التقليدية وتكدس الثروات لدى شركات الذكاء الاصطناعي وحماية حقوق الفئات الهشة." },
+                    { id: "ai_quantum_crypto", category: "Information Law", name_en: "Quantum Computing & the Collapse of Global Cryptographic Security", name_ar: "الحوسبة الكمومية وانهيار التشفير والأمن السيبراني العالمي", topic_en: "Post-Quantum Cryptography, Financial Ledger Vulnerability, and Global Sovereignty", topic_ar: "الحوسبة الكمية وتفكك منظومات التشفير وحماية البيانات السيادية", rat_en: "Explores national security breaches, systemic financial vulnerabilities, and the protection of confidential registries.", rat_ar: "يبحث في تداعيات كسر التشفير على سرية البيانات الشخصية، الأمن المصرفي، والسيادة الرقمية للدول." },
+                    { id: "ai_affective_robot", category: "Psychology & Ethics", name_en: "Social Robots, Artificial Intimacy & Child Psychosocial Development", name_ar: "الروبوتات الاجتماعية والعواطف المصطنعة وتأثيرها على الأسرة والنشء", topic_en: "Anthropomorphic AI Companionship, Emotional Manipulation, and Family Cohesion", topic_ar: "الروبوتات العاطفية والتفاعل الإنساني-الآلي وتفكك الروابط الأسرية", rat_en: "Critiques the psychological perils of replacing authentic human relations with synthetic emotional agents.", rat_ar: "ينقد الآثار النفسية لإحلال العلاقات الاصطناعية محل المودة والصلات الأسرية الحقيقية." },
+                    { id: "ai_surveillance_credit", category: "Political Science", name_en: "Social Credit Algorithms, Mass Facial Recognition & State Panopticons", name_ar: "أنظمة الرصيد الاجتماعي والتعرف على الوجوه والمراقبة الشاملة", topic_en: "Biometric Mass Surveillance, Algorithmic Behavioral Scoring, and Civic Enclosure", topic_ar: "المراقبة البيومترية الشاملة والتصنيف الخوارزمي لسلوك المواطنين", rat_en: "Scrutinizes totalitarian data policing, predictive dissent suppression, and the destruction of public anonymity.", rat_ar: "يناقش مخاطر التحول لدول المراقبة الشاملة واستخدام الخوارزميات لقمع الحريات العامة والمدنية." },
+                    { id: "ai_ip_copyright", category: "Intellectual Property", name_en: "AI Training on Human Cultural Heritage & Fair Intellectual Remuneration", name_ar: "تدريب النماذج على الإرث الثقافي وحقوق الملكية الفكرية والتعويض العادل", topic_en: "Large Model Scraping of Cultural Patrimony, Fair Compensation, and Authorship Rights", topic_ar: "استيلاء الذكاء الاصطناعي على الإنتاج الإنساني والملكية الفكرية", rat_en: "Examines corporate enclosure of collective human literature and fair attribution to biological creators.", rat_ar: "يبحث في حقوق المؤلفين والباحثين أمام عمليات التجريف التجاري للمحتوى العلمي والثقافي." },
+                    { id: "ai_fintech_hft", category: "Finance & Economics", name_en: "High-Frequency Algorithmic Trading & Autonomous Market Crashes", name_ar: "التداول الخوارزمي فائق السرعة والمضاربات الرقمية غير المستقرة", topic_en: "Microsecond Speculation, Flash Crashes, and Systemic Financial Fragility", topic_ar: "المضاربة الخوارزمية فائقة السرعة والمخاطر الهيكلية للأسواق", rat_en: "Evaluates phantom speculative liquidity devoid of real economic productivity and its destabilizing shocks.", rat_ar: "يدرس المضاربات غير الإنتاجية والتقلبات الخاطفة وتجريد النشاط المالي من الأصول الحقيقية." }
+                ]
+            },
+            {
+                group_en: "2. Climate, Ecology & Sustainability (11-20)",
+                group_ar: "٢. المناخ والبيئة والاستدامة (١١-٢٠)",
+                items: [
+                    { id: "env_geoengineering", category: "Environmental Law", name_en: "Solar Radiation Modification & Atmospheric Geoengineering Interventions", name_ar: "الهندسة الجيولوجية وحجب أشعة الشمس والتلاعب بالمناخ", topic_en: "Stratospheric Aerosol Injection, Transboundary Planetary Risks, and Governance Vacuums", topic_ar: "تعديل الإشعاع الشمسي والتدخل في توازن الغلاف الجوي للكوكب", rat_en: "Investigates the perils of manipulating global weather systems without international consensus or predictability.", rat_ar: "يبحث في مخاطر التلاعب بالنظام المناخي العالمي دون إجماع دولي وما قد يسببه من كوارث عابرة للحدود." },
+                    { id: "env_carbon_credits", category: "Sustainability Economics", name_en: "Voluntary Carbon Offsets, Greenwashing & Corporate Commodification", name_ar: "أسواق الكربون الطوعية والتمويه الأخضر وتسليع الطبيعة", topic_en: "Carbon Credit Trading Integrity, Regulatory Arbitrage, and Neoliberal Greenwashing", topic_ar: "تجارة حصص الكربون والتمويه البيئي واستغلال أراضي الجنوب العالمي", rat_en: "Critiques speculative offset schemes that allow industrial polluters to evade tangible emission cuts.", rat_ar: "ينقد تسليع الغابات والمحميات وتحويل حماية البيئة إلى سوق مضاربة تبيح استمرار التلوث الصناعي." },
+                    { id: "env_water_geopolitics", category: "Political Geography", name_en: "Transboundary Mega-Dams, Aquifer Depletion & Riparian Water Wars", name_ar: "السدود الكبرى واستنزاف الأحواض المائية المشتركة وحروب المياه", topic_en: "Upstream Hydro-Hegemony, Shared Aquifer Exhaustion, and International Riparian Justice", topic_ar: "السدود الكبرى واحتكار المياه في الأنهار الدولية المشتركة", rat_en: "Analyzes conflicts over vital river basins, equitable downstream allocation, and weaponization of thirst.", rat_ar: "يحلل النزاعات على أحواض الأنهار الدولية وحرمان دول المصب من الحصص العادلة للمياه الصالحة للشرب." },
+                    { id: "env_deep_sea_mining", category: "Law of the Sea", name_en: "Abyssal Seabed Mineral Extraction & Hydrothermal Ecosystem Destruction", name_ar: "التعدين في أعماق البحار والمحيطات وتدمير النظم البيئية البكر", topic_en: "Polymetallic Nodule Mining, Ocean Floor Commons, and Irreversible Benthic Ruin", topic_ar: "استخراج المعادن من قاع المحيطات الدولية وتدمير البيئة البحرية", rat_en: "Evaluates exploitation of the deep seabed commons for battery minerals at the cost of ancient marine life.", rat_ar: "يقيم استنزاف ثروات قاع البحار المشتركة لصالح شركات التعدين وتدمير التنوع البيولوجي المجهول." },
+                    { id: "env_circular_plastics", category: "Materials Science & Policy", name_en: "Microplastics Bioaccumulation, Chemical Leaching & Zero-Waste Cycles", name_ar: "تراكم اللدائن الدقيقة (المايكروبلاستيك) في السلسلة الغذائية والاقتصاد الدائري", topic_en: "Ubiquitous Microplastic Contamination, Endocrine Disruption, and Extended Producer Liability", topic_ar: "تلوث السلسلة الغذائية باللدائن الدقيقة والمسؤولية الممتدة للمنتج", rat_en: "Studies persistent synthetic toxicities permeating soil, marine ecosystems, and human tissues.", rat_ar: "يدرس انتشار المايكروبلاستيك في المياه والغذاء وأنسجة الإنسان، وتفكيك ثقافة الاستهلاك غير القابل للتحلل." },
+                    { id: "env_loss_damage", category: "International Law", name_en: "Loss and Damage Reparations & North-South Climate Injustice", name_ar: "تمويل الخسائر والأضرار والعدالة المناخية بين الشمال والجنوب", topic_en: "Historic Carbon Debt, Sinking Island States, and Climate Reparation Frameworks", topic_ar: "التعويضات عن الخسائر المناخية والمسؤولية التاريخية للدول الصناعية", rat_en: "Addresses moral and legal claims of vulnerable Southern nations suffering disproportionate climatic catastrophes.", rat_ar: "يناقش الالتزام الأخلاقي والقانوني لتعويض الشعوب المتضررة من الكوارث المناخية التي سببتها الدول الصناعية." },
+                    { id: "env_biodiv_extinction", category: "Conservation Biology", name_en: "The Sixth Mass Extinction, Monoculture Agriculture & Habitat Fragmentation", name_ar: "انقراض الأنواع والزراعة الأحادية المكثفة وتدمير الموائل الطبيعية", topic_en: "Anthropogenic Extinction Cascades, Agro-Industrial Encroachment, and Ecosystem Collapse", topic_ar: "التراجع الحاد للتنوع الحيوي والتوسع الزراعي غير المستدام", rat_en: "Assesses the destruction of planetary biodiversity caused by pesticide dependence and deforestation.", rat_ar: "يحلل مخاطر زوال السلالات النباتية والحيوانية نتيجة إزالة الغابات واستخدام المبيدات الكيماوية الجائرة." },
+                    { id: "env_just_transition", category: "Energy Transition Law", name_en: "Clean Energy Transition, Critical Mineral Extraction & Indigenous Exploitation", name_ar: "التحول الطاقي العادل واستخراج الليثيوم والتعدي على حقوق الشعوب الأصلية", topic_en: "Lithium-Cobalt Supply Chains, Green Sacrifice Zones, and Fair Transition Metrics", topic_ar: "استخراج معادن الطاقة النظيفة والتعدي على أراضي ومياه المجتمعات المحلية", rat_en: "Highlights human rights abuses in mining regions sacrificed for Western electric vehicle adoption.", rat_ar: "يكشف التناقض الأخلاقي بين تبني التقنيات الخضراء في الدول الغنية واستنزاف عمالة وأراضي دول الجنوب." },
+                    { id: "env_food_sovereignty", category: "Agriculture & Sustainability", name_en: "Corporate Seed Patents, Agrochemical Monopolies & Agrarian Sovereignty", name_ar: "براءات اختراع البذور الزراعية واحتكار الشركات الكيميائية للأمن الغذائي", topic_en: "Intellectual Enclosure of Heritage Seeds, Smallholder Dispossession, and Food Democracy", topic_ar: "احتكار البذور المعدلة وراثياً وتهديد السيادة الغذائية لصغار المزارعين", rat_en: "Examines corporate ownership of biological seed germplasm dispossessing local farming communities.", rat_ar: "يبحث في خطورة منع المزارعين من تدوير البذور واحتكار الشركات العملاقة للأمن الغذائي العالمي." },
+                    { id: "env_urban_resilience", category: "Urban Planning & Architecture", name_en: "Urban Heat Islands, Concrete Sprawl & Biophilic Sustainable Architecture", name_ar: "الجزر الحرارية في المدن والتوسع الخرساني والعمارة البيئية المستدامة", topic_en: "Metropolitan Thermal Stress, Passive Cooling Heritage, and Resilient Spatial Planning", topic_ar: "التصحر الحضري والإجهاد الحراري في المدن والعمارة المستدامة", rat_en: "Contrasts hyper-energy intensive concrete cities with vernacular climate-adaptive architectural traditions.", rat_ar: "يقارن بين المدن الخرسانية المستهلكة للطاقة واستلهام التراث المعماري الإسلامي في التبريد الطبيعي." }
+                ]
+            },
+            {
+                group_en: "3. Genetics, Biotechnology & Transhumanism (21-30)",
+                group_ar: "٣. الهندسة الوراثية والبيوتكنولوجيا وما بعد الإنسانية (٢١-٣٠)",
+                items: [
+                    { id: "bio_crispr_germline", category: "Biomedical Law", name_en: "CRISPR-Cas9 Germline Editing & Genetic Enhancement of Offspring", name_ar: "التعديل الجيني للأجنة (كريسبر) وتخليق أطفال بحسب الطلب", topic_en: "Human Germline Modification, Designer Infants, and Genetic Eugenics", topic_ar: "التعديل الوراثي في السلالة الجرثومية وتصميم صفات الأجنة", rat_en: "Investigates crossing the threshold from curative therapy into eugenic selection and social stratification.", rat_ar: "يبحث في التمييز الحاسم بين العلاج الجيني للأمراض والتدخل التحسيني لخلق طبقات وراثية متميزة." },
+                    { id: "bio_transhuman_cyber", category: "Philosophy & Bioethics", name_en: "Transhumanist Cybernetics, Life Extension & the Abolition of Human Nature", name_ar: "فلسفة ما بعد الإنسانية والخلود البيولوجي ومحو الحدود البشرية", topic_en: "Radical Life Extension, Cybernetic Mergers, and the Dissolution of Mortal Agency", topic_ar: "حركات ما بعد الإنسانية ومحاولات الخلود الدنيوي والتعديل السيبراني", rat_en: "Critiques modern utopian quests to overcome biological mortality and redesign human bodily sanctity.", rat_ar: "ينقد الأيديولوجيات التي تسعى لإلغاء الموت البشري وتحويل الإنسان إلى كائن هجين مبرمج تقنياً." },
+                    { id: "bio_synthetic_biology", category: "Life Sciences & Law", name_en: "Synthetic Biology, De Novo Life Creation & Patented Organisms", name_ar: "البيولوجيا التخليقية وخلق كائنات مصنعة من الصفر وبراءات الكائنات الحية", topic_en: "De Novo Genomic Synthesis, Artificial Genomes, and Biological Intellectual Property", topic_ar: "البيولوجيا التخليقية وتخليق شفرات وراثية جديدة واحتكار الكائنات", rat_en: "Examines ownership and existential hazards of releasing artificially synthesized organisms into nature.", rat_ar: "يتناول المسائل العقدية والأخلاقية حول إنتاج كائنات حية مصنعة مخبرياً وتسجيل ملكيتها الفكرية." },
+                    { id: "bio_organ_xenotransplant", category: "Medical Ethics", name_en: "Pig-to-Human Xenotransplantation & Chimeric Bio-Commodity Markets", name_ar: "زراعة الأعضاء الحيوانية المعدلة في الإنسان (الزينوترانسبلانت) والخلائط الجينية", topic_en: "Porcine Xenotransplantation, Interspecies Chimeras, and Bodily Integrity", topic_ar: "زراعة أعضاء الخنازير المعدلة جينياً في البشر والكائنات الهجينة", rat_en: "Addresses species boundary violations, zoonotic virus transmission, and ontological human dignity.", rat_ar: "يعالج إشكاليات زرع أعضاء حيوانية خنزيرية وتخليق أجنة هجينة بين الإنسان والحيوان للأبحاث." },
+                    { id: "bio_surrogacy_ectogenesis", category: "Family Law & Bioethics", name_en: "Artificial Wombs (Ectogenesis), Commercial Surrogacy & Commodification of Motherhood", name_ar: "الأرحام الاصطناعية وتأجير الأرحام التجاري وتسليع الأمومة والنسب", topic_en: "Extra-Uterine Gestation (Ectogenesis), Commercialized Reproduction, and Parentage Rupture", topic_ar: "الأرحام الاصطناعية وتأجير الأرحام وتفكيك مفهوم الوالدية الفطرية", rat_en: "Scrutinizes gestational outsourcing, commodification of women's bodies, and disruption of maternal attachment.", rat_ar: "يناقش مخاطر استئجار الأرحام دولياً والأرحام الاصطناعية التي تفصل الجنين عن رابطة الأمومة البيولوجية." },
+                    { id: "bio_dna_database", category: "Human Rights & Forensics", name_en: "National DNA Biobanks, Predictive Profiling & Genetic Privacy Enclosures", name_ar: "بنوك الحمض النووي القومية والتوصيف الجيني التنبؤي وانتهاك الخصوصية", topic_en: "Compulsory Forensic Biobanks, Genetic Discrimination, and Bodily Surveillance", topic_ar: "قواعد بيانات الحمض النووي الشاملة والتمييز الجيني في التأمين والوظائف", rat_en: "Examines genetic data harvesting by insurance conglomerates, employers, and authoritarian states.", rat_ar: "يفحص خطورة احتكار البصمة الوراثية واستخدامها لحرمان الأفراد من الوظائف أو التأمين الطبي." },
+                    { id: "bio_euthanasia_maid", category: "Medical Law", name_en: "State-Sanctioned Assisted Suicide (MAID) for Poverty and Psychiatric Suffering", name_ar: "القتل الرحيم والموت بمساعدة طبية للمرضى النفسيين والفقراء", topic_en: "Medical Assistance in Dying (MAID), Vulnerable Patient Coercion, and the Value of Suffering", topic_ar: "الموت بمساعدة طبية (القتل الرحيم) والتخلي عن رعاية الفئات الضعيفة", rat_en: "Critiques the normalization of physician-hastened death as a cheaper alternative to palliative care.", rat_ar: "ينقد توسيع قوانين القتل الرحيم لتشمل المعوزين والمكتئبين كبديل رخيص عن الرعاية التلطيفية والاجتماعية." },
+                    { id: "bio_stemcell_embryo", category: "Embryology & Law", name_en: "In Vitro Gametogenesis (IVG) & Post-14-Day Human Embryo Experimentation", name_ar: "التخليق المعملي للأمشاج وتجاوز قاعدة الـ 14 يوماً في أبحاث الأجنة", topic_en: "Extended Human Embryo Culture, Synthetic Embryoids, and Moral Personhood", topic_ar: "أبحاث الأجنة البشرية وتجاوز فترة الـ 14 يوماً وتخليق أشباه الأجنة", rat_en: "Deconstructs scientific pressure to treat embryonic human entities as disposable research substrate.", rat_ar: "يبحث في حرمة الجنين البشري في مراحله الأولى ورفض تحويله إلى مجرد مادة خام للتجارب." },
+                    { id: "bio_gain_of_function", category: "Biosecurity", name_en: "Gain-of-Function Virological Research & Lab-Escape Biosecurity Risks", name_ar: "أبحاث زيادة فتك الفيروسات (Gain-of-Function) ومخاطر التسرب البيولوجي", topic_en: "Dual-Use Pathogen Engineering, Laboratory Biosafety Breaches, and Global Pandemic Risks", topic_ar: "تعديل الفيروسات لزيادة شراستها ومخاطر التسرب المعملي والأوبئة المصنعة", rat_en: "Evaluates scientific hubs engineering pandemic-capable pathogens under dubious claims of anticipatory vaccine design.", rat_ar: "يقيم مخاطر تعديل الفيروسات جينياً لتصبح أشد فتكاً بالبشر بذريعة دراسة اللقاحات الاستباقية." },
+                    { id: "bio_psychedelic_mental", category: "Psychiatry & Pharmacology", name_en: "Psychedelic Psychotherapy, Chemical Alteration of Consciousness & Meaning", name_ar: "العلاج النفسي بالمهلوسات والمخدرات وتغيير الوعي والتخدير الوجودي", topic_en: "Clinical Psychedelic Protocols, Ego-Dissolution, and the Commodification of Mysticism", topic_ar: "استخدام المواد المهلوسة في الطب النفسي والتلاعب بالوعي البشري", rat_en: "Analyzes the pharmacological suppression of existential suffering without addressing root socio-spiritual voids.", rat_ar: "يحلل استخدام العقاقير المهلوسة لتغيير كيمياء الدماغ وإدراك الذات وتغييب التوبة والمعنى الروحي." }
+                ]
+            },
+            {
+                group_en: "4. Global Governance, Politics & Social Sciences (31-40)",
+                group_ar: "٤. الحوكمة العالمية والعلوم السياسية والاجتماعية (٣١-٤٠)",
+                items: [
+                    { id: "soc_surveillance_capitalism", category: "Sociology & Economics", name_en: "Surveillance Capitalism, Behavioral Futures Markets & Free Will Erosion", name_ar: "رأسمالية المراقبة وتعدين السلوك البشري وسلب الإرادة الحرة", topic_en: "Behavioral Surplus Extraction, Predictive Targeting, and the Erosion of Human Autonomy", topic_ar: "رأسمالية المراقبة والتجارة في التنبؤ بسلوكيات البشر وتوجيهها", rat_en: "Examines tech monopolies turning private human experience into behavioral data commodities.", rat_ar: "يفضح استغلال عمالقة التكنولوجيا للبيانات الخاصة لتوجيه اختيارات الأفراد الاستهلاكية والسياسية قسراً." },
+                    { id: "soc_post_truth_polarize", category: "Media & Political Science", name_en: "Social Media Echo Chambers, Political Polarization & Tribal Epistemology", name_ar: "غرف الصدى الرقمية والاستقطاب السياسي الحاد وتفتيت المجتمعات", topic_en: "Algorithmic Radicalization, Micro-Targeted Disinformation, and Societal Fracturing", topic_ar: "الاستقطاب الحزبي الخوارزمي وهدم السلم المجتمعي عبر وسائل التواصل", rat_en: "Scrutinizes engagement algorithms designed to amplify outrage, distrust, and sectarian hostility.", rat_ar: "يدرس خوارزميات المنصات التي تتعمد إثارة الكراهية والنزاعات لزيادة وقت المشاهدة والأرباح الإعلانية." },
+                    { id: "soc_global_sanctions", category: "International Law", name_en: "Unilateral Economic Sanctions as Asymmetric Siege Warfare on Civilians", name_ar: "العقوبات الاقتصادية أحادية الجانب وحصار الشعوب وتجويع المدنيين", topic_en: "Secondary Financial Coercion, Civilian Deprivation, and Hegemonic Jurisdictional Overreach", topic_ar: "الحصار الاقتصادي أحادي الجانب وتأثيره على دواء وغذاء الشعوب المستضعفة", rat_en: "Critiques extraterritorial financial embargoes that punish vulnerable civilian populations under geopolitical pretexts.", rat_ar: "ينقد استخدام الحظر المالي واحتكار عملة الاحتياط لمعاقبة الشعوب وتجويعها دون مسوغ قانوني دولي." },
+                    { id: "soc_refugee_biometrics", category: "Human Rights & Migration", name_en: "Biometric Border Surveillance, Refugee Pushbacks & Digital Deportation", name_ar: "المراقبة البيومترية على الحدود واحتجاز اللاجئين وترحيلهم خوارزمياً", topic_en: "Automated Border Walls, Asylum Denials, and the Criminalization of Forced Displaced Persons", topic_ar: "عسكرة الحدود والمراقبة البيومترية لطالبي اللجوء وسلب حقوقهم الإنسانية", rat_en: "Assesses externalized border control technologies stripping displaced persons of sanctuary rights.", rat_ar: "يوثق انتهاكات تتبع المهاجرين واحتجازهم آلياً في معسكرات وتجريدهم من حق اللجوء الإنساني." },
+                    { id: "soc_techno_feudalism", category: "Political Economy", name_en: "Techno-Feudalism, App-Worker Precarity & Digital Monopolies", name_ar: "الإقطاع التقني واقتصاد المنصات وهشاشة حقوق عمال التوصيل والخدمات", topic_en: "Platform Rents, Algorithmic Gig Subjugation, and the Death of Organized Labor", topic_ar: "الإقطاعية الرقمية وريع المنصات واستغلال عمال التطبيقات الذكية", rat_en: "Unmasks cloud platforms functioning as neo-feudal digital estates where users and workers pay rent.", rat_ar: "يكشف تحول أصحاب المنصات الرقمية إلى إقطاعيين جدد يستعبدون العمال ويحتكرون الأسواق." },
+                    { id: "soc_weaponized_dollar", category: "Monetary Policy", name_en: "De-Dollarization, Central Bank Digital Currencies (CBDCs) & State Financial Control", name_ar: "العملات الرقمية للبنوك المركزية (CBDCs) وإنهاء الخصوصية المالية للمواطنين", topic_en: "Programmable CBDCs, Sovereign Monetary Surveillance, and Transaction Blacklisting", topic_ar: "النقود الرقمية السيادية القابلة للبرمجة والمراقبة المالية الشاملة", rat_en: "Examines state-controlled programmable digital currencies enabling total surveillance of every purchase.", rat_ar: "يحذر من سحب النقد الورقي وإجبار المواطنين على عملات رقمية تخول الدولة تجميد أموال المعارضين بضغطة زر." },
+                    { id: "soc_epistemic_colonial", category: "Sociology of Science", name_en: "Eurocentric Epistemic Hegemony in Global Academic Publishing & Ranking", name_ar: "الهيمنة الاستعمارية المعرفية في النشر الأكاديمي الدولي وتصنيف الجامعات", topic_en: "Indexed Journal Monopolies, Southern Epistemic Invalidation, and Knowledge Decolonization", topic_ar: "احتكار دور النشر الغربية للمعايير العلمية وتهميش المعارف غير الغربية", rat_en: "Deconstructs Western publishing cartels that marginalize indigenous, Asian, and Islamic paradigms.", rat_ar: "يفكك استعلاء منظومات النشر الغربية التي ترفض الاعتراف بالرؤى المعرفية الإسلامية والمحلية." },
+                    { id: "soc_military_space", category: "Space Law", name_en: "Weaponization of Low-Earth Orbit, Anti-Satellite Missiles & Orbital Litter", name_ar: "عسكرة الفضاء الخارجي والصواريخ المضادة للأقمار الاصطناعية وحطام المدار", topic_en: "Kessler Syndrome, Orbital Weapon Systems, and the Peaceful Use of the Cosmos", topic_ar: "سباق التسلح في الفضاء الخارجي وحماية المدارات الفضائية المشتركة", rat_en: "Evaluates superpower rivalries turning outer space into a theater of kinetic warfare and space debris hazards.", rat_ar: "يقيم مخاطر نشر الأسلحة في مدارات الأرض وتدمير الأقمار الاصطناعية التي تعتمد عليها البشرية." },
+                    { id: "soc_loneliness_epidemic", category: "Public Health & Sociology", name_en: "The Chronic Loneliness Epidemic, Atomization & the Dissolution of Community", name_ar: "وباء العزلة والوحدة القاتلة في المجتمعات الحديثة وتآكل التكافل الاجتماعي", topic_en: "Hyper-Individualism, Urban Alienation, and the Collapse of Mediating Social Institutions", topic_ar: "الفردانية المفرطة ووباء الوحدة النفسية وانهيار مؤسسات التضامن المجتمعي", rat_en: "Investigates societal decay resulting from extreme individualism, breakdown of mosques/neighborhoods, and screen addictions.", rat_ar: "يبحث في أسباب العزلة وتفكك الأحياء والمجتمعات التكافلية بسبب الفردانية الاستهلاكية المادية." },
+                    { id: "soc_deepfake_justice", category: "Forensic Law", name_en: "Generative Evidence in Criminal Courts & the Collapse of Visual Witness Integrity", name_ar: "الأدلة المصنعة بالذكاء الاصطناعي في المحاكم وانهيار موثوقية البينات المرئية", topic_en: "Synthetic Audio-Visual Evidence, Judicial Miscarriages, and Reforming the Burden of Proof", topic_ar: "تزييف الأدلة الصوتية والمرئية في القضاء الجنائي وإعادة بناء معايير الإثبات", rat_en: "Analyzes systemic threats to judicial trials when audio, video, and biometric evidence can be flawlessly forged.", rat_ar: "يحلل معضلة براءة المتهمين أو إدانتهم ظلماً عند تزوير كاميرات المراقبة والتسجيلات بواسطة الذكاء الاصطناعي." }
+                ]
+            },
+            {
+                group_en: "5. Bio-Circular Economy, Resources & Corporate Law (41-50)",
+                group_ar: "٥. الاقتصاد الحيوي الدائري والموارد وقانون الشركات (٤١-٥٠)",
+                items: [
+                    { id: "econ_pharma_monopoly", category: "Intellectual Property & Health", name_en: "Big Pharma Patent Monopolies on Essential Vaccines & Life-Saving Therapies", name_ar: "احتكار شركات الأدوية لبراءات اختراع اللقاحات والأدوية المنقذة للحياة", topic_en: "TRIPS Patent Waivers, Artificial Drug Scarcity, and the Right to Health", topic_ar: "احتكار براءات الأدوية الأساسية وحرمان شعوب العالم النامي من العلاج", rat_en: "Scrutinizes global patent regimes prioritizing corporate dividends over affordable treatments during pandemics.", rat_ar: "يدين احتكار براءات اختراع الأدوية وفرض أسعار خيالية تمنع الفقراء في العالم النامي من النجاة." },
+                    { id: "econ_planned_obsolescence", category: "Consumer Protection & Law", name_en: "Planned Obsolescence, Software Enclosure & The Right to Repair", name_ar: "التقادم المخطط للأجهزة وحرمان المستهلك من حق الإصلاح", topic_en: "Artificial Hardware Expiration, Vendor Lock-in, and the Right to Repair Movement", topic_ar: "التقادم المخطط للسلع التكنولوجية ومنع الصيانة الذاتية وهدر الموارد", rat_en: "Challenges corporate restrictions preventing consumers from repairing devices, generating immense e-waste.", rat_ar: "يحارب ممارسات الشركات التي تتعمد تعطيل الأجهزة بعد فترة وجيزة لإجبار المستهلكين على الشراء المتكرر." },
+                    { id: "econ_water_privatize", category: "Public Utilities Law", name_en: "Privatization of Municipal Water Networks & Commodification of Essential Hydration", name_ar: "خصخصة شبكات مياه الشرب وتحويل الحق الأساسي في الحياة إلى سلعة تجارية", topic_en: "Corporate Takeover of Public Water Infrastructure and Tariff Exploitation of Vulnerable Homes", topic_ar: "خصخصة مصادر المياه وتجريد الفئات الفقيرة من الحق في الشرب النظيف", rat_en: "Critiques the privatization of public water utilities by multinational conglomerates demanding profitability.", rat_ar: "ينقد تسليم إدارة المياه العامة للشركات الأجنبية وقطع الإمدادات عن الأسر التي تعجز عن دفع الفواتير." },
+                    { id: "econ_esg_metrics", category: "Corporate Governance", name_en: "ESG Metrics, Corporate Rent-Seeking & Greenwashing Compliance Scandals", name_ar: "معايير الاستدامة والحوكمة (ESG) والاحتيال الشركاتي والتقارير المضللة", topic_en: "ESG Metric Manipulation, Financial Tokenism, and Genuine Stakeholder Value", topic_ar: "معايير الحوكمة البيئية والاجتماعية (ESG) والتضليل المالي للمستثمرين", rat_en: "Deconstructs ESG indices exploited by oil conglomerates to maintain pristine PR images without reducing emissions.", rat_ar: "يفكك استغلال شهادات الاستدامة من قبل كبرى الشركات الملوثة لتضليل صناديق الاستثمار والمجتمع." },
+                    { id: "econ_rare_earths", category: "Geopolitics of Resources", name_en: "Rare-Earth Mineral Monopolies, Environmental Destruction & Strategic Chokepoints", name_ar: "احتكار المعادن الأرضية النادرة والتدمير الكيميائي لمناطق الاستخراج", topic_en: "Critical Mineral Geopolitics, Toxic Refining Residues, and Global Supply Bottlenecks", topic_ar: "صراع السيطرة على المعادن النادرة والآثار الكيميائية المدمرة لتكريرها", rat_en: "Assesses hazardous chemical acid-leaching used to extract neodymium and dysprosium for green turbines.", rat_ar: "يدرس الأثر الكيميائي والبيئي المدمر لتكرير المعادن النادرة اللازمة للمحركات الكهربائية والتوربينات." },
+                    { id: "econ_fast_fashion", category: "Supply Chain & Human Rights", name_en: "Ultra-Fast Fashion, Microfiber Ocean Waste & Sweatshop Labor Injustice", name_ar: "صناعة الأزياء السريعة والنفايات النسيجية السامة واستغلال عمال المصانع", topic_en: "Textile Waste Colonialism in Atacama/Ghana, Microfiber Pollution, and Labor Bondage", topic_ar: "صناعة الأزياء فائقة السرعة وإلقاء ملايين أطنان الملابس في أراضي إفريقيا", rat_en: "Investigates discard cycles producing billions of unwearable synthetic garments dumped into global South dumps.", rat_ar: "يكشف الكوارث البيئية لإلقاء أطنان الملابس غير المستعملة في صحاري الدول النامية وتلويث المحيطات." },
+                    { id: "econ_halal_integrity", category: "Supply Chain & Fiqh", name_en: "Global Halal Supply Chains, Molecular Adulteration & Blockchain Verification", name_ar: "سلاسل إمداد الحلال العالمية والغش الجزيئي والتحقق المعتمد على البلوكشين", topic_en: "Cross-Contamination in High-Volume Logistics, Traceability Failures, and Halal Assurance", topic_ar: "نزاهة سلاسل إمداد منتجات الحلال العالمية ومكافحة الغش بالمطيافية والبلوكشين", rat_en: "Analyzes international food supply fragmentation, contamination with uncertified ingredients, and verification tech.", rat_ar: "يعالج إشكاليات خلط اللحوم والمكونات غير المباحة في المصانع العملاقة واستخدام التقنية للتوثيق." },
+                    { id: "econ_debt_trap", category: "Development Economics", name_en: "Predatory Sovereign Debt Architecture & Structural Adjustment Enclosures", name_ar: "الديون السيادية الربوية المشروطة واستنزاف الموارد الطبيعية للدول المقترضة", topic_en: "Sovereign Debt Servicing, Structural Adjustment Austerity, and Ecological Plunder", topic_ar: "الديون السيادية الدولية واشتراطات التقشف ونهب الموارد الوطنية", rat_en: "Examines how crippling multilateral debt forces impoverished nations to liquidate forests and mineral assets.", rat_ar: "يفحص كيفية إجبار الدول النامية على تدمير ثرواتها الطبيعية وبيع أصولها لتسديد فوائد الديون المركبة." },
+                    { id: "econ_space_asteroids", category: "Space Economics & Law", name_en: "Asteroid Mining, Celestial Resource Enclosure & Trillion-Dollar Monopolies", name_ar: "تعدين الكويكبات الفضائية واحتكار الموارد الكونية والتشريعات الفضائية", topic_en: "Near-Earth Asteroid Extraction, Planetary Property Rights, and Extreme Wealth Polarization", topic_ar: "استغلال الموارد التعدينية في الكويكبات الفضائية واحتكار مليارديرات الفضاء", rat_en: "Scrutinizes unilateral domestic space acts permitting private billionaires to claim exclusive celestial property.", rat_ar: "يناقش محاولات الشركات الخاصة الاستيلاء على موارد الأجرام السماوية بما يناقض مبدأ التراث الإنساني المشترك." },
+                    { id: "econ_dark_patterns", category: "Commercial Law & Cyberpsychology", name_en: "E-Commerce Dark Patterns, Dopaminergic Loops & Consumer Manipulation", name_ar: "الأنماط الخبيثة في المتاجر الإلكترونية والتلاعب العصبي بسلوك المستهلكين", topic_en: "Subliminal Digital Design, Neuro-Marketing Deception, and Coerced Transactions", topic_ar: "التصميم الخادع في التطبيقات الرقمية (Dark Patterns) والتحايل على إرادة المشتري", rat_en: "Exposes deceitful UX interfaces engineered to trigger impulse purchases and entrap vulnerable users.", rat_ar: "يبحث في ملاحقة واجهات التطبيقات المصممة للتغرير بالمستهلك واستغلال ثغرات علم النفس العصبي للشراء الإجباري." }
+                ]
+            }
+        ];
+
+        // Standard 9 Curriculum Categories for Directory
+        const standardCurriculumData = [
+            { emoji: '🌌', title_en: 'Cosmology & Natural Philosophy', title_ar: 'الكونيات وفلسفة الطبيعة', items_en: ['Tafsir Kauni (Cosmic Exegesis)', 'Ibn Sina’s cosmological hierarchy', 'Al-Biruni\'s planetary models', 'Integration with theology'], items_ar: ['التفسير الكوني للقرآن', 'المراتب الكونية عند ابن سينا', 'نماذج البيروني الفلكية', 'التكامل بين العقيدة والطبيعة'] },
+            { emoji: '🧪', title_en: 'Experimental Sciences', title_ar: 'العلوم التجريبية والتطبيقية', items_en: ['Alchemy to Chemistry (Jabir ibn Hayyan)', 'Optics and Vision (Ibn al-Haytham)', 'Astronomy and Instruments (Al-Zarqali)'], items_ar: ['من الخيمياء إلى الكيمياء (جابر بن حيان)', 'البصريات ونظرية الرؤية (ابن الهيثم)', 'الفلك والآلات الرصدية (الزرقالي)'] },
+            { emoji: '🧬', title_en: 'Life Sciences & Medicine', title_ar: 'علوم الحياة والطب الإسلامي', items_en: ['Medicine (Ibn Sina’s Canon)', 'Botany and Pharmacology (Ibn al-Baitar)', 'Veterinary Medicine and stewardship (khalifah)'], items_ar: ['القانون في الطب (ابن سينا)', 'علم النبات والصيدلة (ابن البيطار)', 'الطب البيطري وأمانة الاستخلاف'] },
+            { emoji: '🧭', title_en: 'Geography & Earth Sciences', title_ar: 'الجغرافيا وعلوم الأرض', items_en: ['Geographical mapping (Al-Idrisi)', 'Environmental ethics (hima, harim)', 'Meteorology and Climatology'], items_ar: ['رسم الخرائط والمسالك (الإدريسي)', 'الأخلاق البيئية (الحمى والحريم)', 'الأنواء والمناخ في التراث'] },
+            { emoji: '📐', title_en: 'Mathematics & Logic', title_ar: 'الرياضيات والمنطق', items_en: ['Algebra and Arithmetic (Al-Khwarizmi)', 'Geometry and Architecture', 'Logic (mantiq) as a cognitive tool'], items_ar: ['الجبر وحساب المثلثات (الخوارزمي)', 'الهندسة والعمارة الإسلامية', 'المنطق كآلة عاصمة للذهن'] },
+            { emoji: '📜', title_en: 'Human & Social Sciences', title_ar: 'العلوم الإنسانية والاجتماعية', items_en: ['Philosophy of Science (Al-Farabi, Al-Ghazali)', 'Psychology - Ilm al-Nafs (Al-Razi)', 'Education and Pedagogy (Al-Zarnuji)'], items_ar: ['فلسفة العلوم (الفارابي والغزالي)', 'علم النفس والطب الروحاني (الرازي)', 'طرق التعليم والتعلم (الزرنوجي)'] },
+            { emoji: '⚖️', title_en: 'Ethics, Law & Bioethics', title_ar: 'الأخلاق والقانون والأخلاقيات الحيوية', items_en: ['Maqasid al-Shariah in modern research', 'Contemporary Bioethics & cloning fatwas', 'Economic justice and sustainability'], items_ar: ['مقاصد الشريعة في مناهج البحث', 'قضايا الهندسة الوراثية والاستنساخ', 'العدالة التوزيعية والاستدامة'] },
+            { emoji: '🌱', title_en: 'Technology & Engineering', title_ar: 'التكنولوجيا والهندسة الميكانيكية', items_en: ['Hydraulics and Engineering (Banu Musa)', 'Automata and Mechanical Devices (Al-Jazari)', 'Agrarian Innovation in Al-Andalus'], items_ar: ['علم الحيل والرفع المائي (بنو موسى)', 'الآلات الذاتية والحركة (الجزري)', 'الثورة الزراعية في الأندلس'] },
+            { emoji: '📚', title_en: 'Epistemic Integration', title_ar: 'التكامل المعرفي وإسلامية المعرفة', items_en: ['Epistemological models (Al-Ghazali)', 'Ibn Khaldun’s Muqaddimah and Umran', 'Science as an act of devotion (Ibadah)'], items_ar: ['تصنيف العلوم (الإمام الغزالي)', 'علم العمران البشري (ابن خلدون)', 'العلم كعبادة وعمارة للأرض'] }
+        ];
+
+        // Flatten lists for fast indexing
+        const islamicPillars = islamicCategories.flatMap(cat => cat.items);
+        const sciencePillars = scienceCategories.flatMap(cat => cat.items);
+
+        let currentLang = 'en';
+        let assessmentChartInstance = null;
+
+        // Specific Assessment Deadlines (Academic Calendar 2026/2027)
+        const deadlines = {
+            ar1: new Date('2026-11-08T23:59:59+08:00').getTime(),
+            ar2: new Date('2026-12-06T23:59:59+08:00').getTime(),
+            wa:  new Date('2026-12-27T23:59:59+08:00').getTime(),
+            pr:  new Date('2027-01-03T23:59:59+08:00').getTime(),
+            ft:  new Date('2027-01-31T23:59:59+08:00').getTime()
+        };
+
+        // --- COUNTDOWN ENGINE ---
+        function runCountdowns() {
+            const now = new Date().getTime();
+
+            function calcParts(target) {
+                const diff = target - now;
+                if (diff <= 0) return { d: '00', h: '00', m: '00', s: '00' };
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                return {
+                    d: d < 10 ? '0' + d : d,
+                    h: h < 10 ? '0' + h : h,
+                    m: m < 10 ? '0' + m : m,
+                    s: s < 10 ? '0' + s : s
+                };
+            }
+
+            const c1 = calcParts(deadlines.ar1);
+            const c2 = calcParts(deadlines.ar2);
+            const c3 = calcParts(deadlines.wa);
+            const c4 = calcParts(deadlines.pr);
+            const c5 = calcParts(deadlines.ft);
+
+            document.getElementById('cd1-d').textContent = c1.d;
+            document.getElementById('cd1-h').textContent = c1.h;
+            document.getElementById('cd1-m').textContent = c1.m;
+            document.getElementById('cd1-s').textContent = c1.s;
+
+            document.getElementById('cd2-d').textContent = c2.d;
+            document.getElementById('cd2-h').textContent = c2.h;
+            document.getElementById('cd2-m').textContent = c2.m;
+            document.getElementById('cd2-s').textContent = c2.s;
+
+            document.getElementById('cd3-d').textContent = c3.d;
+            document.getElementById('cd3-h').textContent = c3.h;
+            document.getElementById('cd3-m').textContent = c3.m;
+            document.getElementById('cd3-s').textContent = c3.s;
+
+            document.getElementById('cd4-d').textContent = c4.d;
+            document.getElementById('cd4-h').textContent = c4.h;
+            document.getElementById('cd4-m').textContent = c4.m;
+            document.getElementById('cd4-s').textContent = c4.s;
+
+            document.getElementById('cd5-d').textContent = c5.d;
+            document.getElementById('cd5-h').textContent = c5.h;
+            document.getElementById('cd5-m').textContent = c5.m;
+            document.getElementById('cd5-s').textContent = c5.s;
+        }
+
+        // --- INITIALIZE & UPDATE CHART ---
+        function initChart() {
+            const ctx = document.getElementById('assessmentChart').getContext('2d');
+            const labelsEn = ['Final Test (Online)', 'Written Assignment', 'Article Review 1', 'Article Review 2', 'Presentation'];
+            const labelsAr = ['الاختبار النهائي (عبر الإنترنت)', 'التكليف الكتابي', 'مراجعة المقال ١', 'مراجعة المقال ٢', 'العرض التقديمي'];
+
+            if (assessmentChartInstance) {
+                assessmentChartInstance.destroy();
+            }
+
+            assessmentChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: currentLang === 'ar' ? labelsAr : labelsEn,
+                    datasets: [{
+                        data: [40, 20, 15, 15, 10],
+                        backgroundColor: ['#d4af37', '#d97706', '#eab308', '#f59e0b', '#94a3b8'],
+                        borderColor: '#07090e',
+                        borderWidth: 4,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '72%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#181e2b',
+                            titleColor: '#f8fafc',
+                            bodyColor: '#d4af37',
+                            borderColor: '#242d3d',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- POPULATE GENERATOR DROPDOWNS ---
+        function populateGeneratorDropdowns() {
+            const selectIslamic = document.getElementById('selectIslamicPillar');
+            const selectScience = document.getElementById('selectSciencePillar');
+            if (!selectIslamic || !selectScience) return;
+
+            const curIslamicVal = selectIslamic.value;
+            const curScienceVal = selectScience.value;
+
+            // Grouped 50 Islamic frameworks with optgroup headers
+            selectIslamic.innerHTML = islamicCategories.map(group => {
+                const groupLabel = (currentLang === 'ar') ? group.group_ar : group.group_en;
+                const options = group.items.map(p => {
+                    const label = (currentLang === 'ar') ? p.name_ar : p.name_en;
+                    return `<option value="${p.id}">${label}</option>`;
+                }).join('');
+                return `<optgroup label="${groupLabel}">${options}</optgroup>`;
+            }).join('');
+
+            // Grouped 50 Scientific / Legal / Environmental fields with optgroup headers
+            selectScience.innerHTML = scienceCategories.map(group => {
+                const groupLabel = (currentLang === 'ar') ? group.group_ar : group.group_en;
+                const options = group.items.map(p => {
+                    const label = (currentLang === 'ar') ? `${p.name_ar} [${p.category}]` : `${p.name_en} [${p.category}]`;
+                    return `<option value="${p.id}">${label}</option>`;
+                }).join('');
+                return `<optgroup label="${groupLabel}">${options}</optgroup>`;
+            }).join('');
+
+            if (curIslamicVal && islamicPillars.some(p => p.id === curIslamicVal)) {
+                selectIslamic.value = curIslamicVal;
+            }
+            if (curScienceVal && sciencePillars.some(p => p.id === curScienceVal)) {
+                selectScience.value = curScienceVal;
+            }
+        }
+
+        function generateInterdisciplinaryTitle() {
+            const selectIslamic = document.getElementById('selectIslamicPillar');
+            const selectScience = document.getElementById('selectSciencePillar');
+            if (!selectIslamic || !selectScience) return;
+
+            const isVal = selectIslamic.value || islamicPillars[0].id;
+            const scVal = selectScience.value || sciencePillars[0].id;
+
+            const islamicObj = islamicPillars.find(p => p.id === isVal) || islamicPillars[0];
+            const scienceObj = sciencePillars.find(p => p.id === scVal) || sciencePillars[0];
+
+            const titleEl = document.getElementById('generatedTitleDisplay');
+            const rationaleEl = document.getElementById('generatedRationaleDisplay');
+            const tagsEl = document.getElementById('genPillarTags');
+
+            let synthesizedTitle = '';
+            let rationaleText = '';
+
+            const connAr = islamicObj.conn_ar || 'في ضوء المنظومة الإسلامية لـ';
+            const connEn = islamicObj.conn_en || 'Through the Perspective of';
+            const ratAr = scienceObj.rat_ar || '';
+            const ratEn = scienceObj.rat_en || '';
+
+            if (currentLang === 'ar') {
+                synthesizedTitle = `${connAr} ${scienceObj.topic_ar}`;
+                rationaleText = `التركيز والهدف البحثي: ${ratAr}`;
+                tagsEl.textContent = `[${scienceObj.category}] • الركيزة: ${islamicObj.name_ar}`;
+            } else {
+                synthesizedTitle = `${connEn} ${scienceObj.topic_en}`;
+                rationaleText = `Research Scope & Inquiry Objective: ${ratEn}`;
+                tagsEl.textContent = `[${scienceObj.category}] • Pillar: ${islamicObj.name_en}`;
+            }
+
+            titleEl.textContent = `"${synthesizedTitle}"`;
+            rationaleEl.textContent = rationaleText;
+        }
+
+        function randomizeThesisTitle() {
+            const selectIslamic = document.getElementById('selectIslamicPillar');
+            const selectScience = document.getElementById('selectSciencePillar');
+            if (!selectIslamic || !selectScience) return;
+
+            const randomIslamicIndex = Math.floor(Math.random() * islamicPillars.length);
+            const randomScienceIndex = Math.floor(Math.random() * sciencePillars.length);
+
+            selectIslamic.value = islamicPillars[randomIslamicIndex].id;
+            selectScience.value = sciencePillars[randomScienceIndex].id;
+
+            generateInterdisciplinaryTitle();
+        }
+
+        function copyGeneratedThesis() {
+            const titleEl = document.getElementById('generatedTitleDisplay');
+            const rationaleEl = document.getElementById('generatedRationaleDisplay');
+            if (!titleEl) return;
+
+            const textToCopy = `${titleEl.textContent}\n\n${rationaleEl.textContent}`;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = textToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyBtnText = document.getElementById('btnCopyTitleText');
+            if (copyBtnText) {
+                const originalText = copyBtnText.textContent;
+                copyBtnText.textContent = (currentLang === 'ar') ? 'تم النسخ بنجاح!' : 'Copied to Clipboard!';
+                setTimeout(() => {
+                    copyBtnText.textContent = originalText;
+                }, 2000);
+            }
+        }
+
+        // --- POPULATE STANDARD CURATED ACCORDION ---
+        function renderStandardAccordion() {
+            const container = document.getElementById('topicsAccordionContainer');
+            if (!container) return;
+
+            container.innerHTML = standardCurriculumData.map((topic, index) => {
+                const title = currentLang === 'ar' ? topic.title_ar : topic.title_en;
+                const items = currentLang === 'ar' ? topic.items_ar : topic.items_en;
+                return `
+                    <div class="topic-item rounded-2xl bg-surface border border-borderMuted overflow-hidden transition-all hover:border-gold/30">
+                        <button onclick="toggleAccordionItem(this)" class="w-full p-4 flex items-center justify-between text-left rtl:text-right hover:bg-surfaceLight/40 transition-colors">
+                            <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                                <span class="text-xl">${topic.emoji}</span>
+                                <span class="text-xs sm:text-sm font-bold text-bright">${title}</span>
+                            </div>
+                            <span class="topic-chevron text-slate-400 text-xs transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="topic-body bg-surfaceLight/30 border-t border-borderMuted/40">
+                            <ul class="p-4 space-y-2 text-xs text-slate-300 list-disc list-inside">
+                                ${items.map(it => `<li>${it}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleAccordionItem(btn) {
+            const item = btn.closest('.topic-item');
+            item.classList.toggle('open');
+        }
+
+        function toggleAllAccordions(expand) {
+            document.querySelectorAll('.topic-item').forEach(item => {
+                if (expand) item.classList.add('open');
+                else item.classList.remove('open');
+            });
+        }
+
+        // --- LANGUAGE SWITCHER ENGINE ---
+        function setLanguage(lang) {
+            currentLang = lang;
+            const html = document.documentElement;
+
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                document.getElementById('currentLangFlag').textContent = '🇸🇦';
+                document.getElementById('currentLangLabel').textContent = 'العربية';
+                document.getElementById('targetLangPreview').textContent = 'English';
+
+                // Navigation
+                document.getElementById('headerCourseTitle').textContent = 'فلسفة العلوم الإسلامية (ISI8003)';
+                document.getElementById('navLinkOverview').textContent = 'نظرة عامة';
+                document.getElementById('navLinkDeadlines').textContent = 'المواعيد';
+                document.getElementById('navLinkAssignments').textContent = 'التكليفات';
+                document.getElementById('navLinkTopics').textContent = 'دليل الأطروحات';
+
+                // Hero
+                document.getElementById('badgeCalendarTerm').textContent = 'التقويم الأكاديمي المعتمد';
+                document.getElementById('heroMainHeading').textContent = 'التأصيل المعرفي التوحيدي والخطاب العلمي المعاصر';
+                document.getElementById('heroSubtitle').textContent = 'البوابة الشاملة لمقرر فلسفة العلوم الإسلامية، المراجعات النقدية المنهجية، وتوليد العناوين البحثية التفاعلية.';
+                document.getElementById('deadlineGridTitle').textContent = 'العد التنازلي لمواعيد تسليم التكليفات';
+                document.getElementById('gmtBadge').textContent = 'بتوقيت ماليزيا (GMT+8)';
+
+                // Deadlines
+                document.getElementById('cdTitle1').textContent = 'مراجعة المقال ١';
+                document.getElementById('cdDate1').textContent = '٨ نوفمبر ٢٠٢٦';
+                document.getElementById('cdTitle2').textContent = 'مراجعة المقال ٢';
+                document.getElementById('cdDate2').textContent = '٦ ديسمبر ٢٠٢٦';
+                document.getElementById('cdTitle3').textContent = 'التكليف الكتابي (٣)';
+                document.getElementById('cdDate3').textContent = '٢٧ ديسمبر ٢٠٢٦';
+                document.getElementById('cdTitle4').textContent = 'العرض التقديمي';
+                document.getElementById('cdDate4').textContent = '٣ يناير ٢٠٢٧';
+                document.getElementById('cdTitle5').textContent = 'الاختبار النهائي (عبر الإنترنت)';
+                document.getElementById('cdDate5').textContent = '١١–٣١ يناير ٢٠٢٧';
+
+                // Overview & Table
+                document.getElementById('overviewSectionHeading').textContent = 'هيكلة التقييم وتوزيع الدرجات الأكاديمية';
+                document.getElementById('overviewSectionSub').textContent = 'التوزيع الوزني المعتمد وسياسة التقييم المستمر والاختبار النهائي.';
+                document.getElementById('chartCardHeading').textContent = 'المخطط الدائري لتوزيع الدرجات';
+                document.getElementById('chartCenterLabel').textContent = 'المجموع الكلي';
+                document.getElementById('tableTitle').textContent = 'سجل التكليفات والمواصفات';
+                document.getElementById('thAssessment').textContent = 'عنصر التقييم';
+                document.getElementById('thSchedule').textContent = 'الموعد المحدد';
+                document.getElementById('thWeight').textContent = 'الوزن';
+                document.getElementById('thFormat').textContent = 'طريقة التسليم';
+
+                document.getElementById('rowName1').textContent = 'مراجعة المقال ١';
+                document.getElementById('rowSched1').textContent = 'الأسبوع ٧ (٨ نوفمبر ٢٠٢٦)';
+                document.getElementById('rowFmt1').textContent = '٣-٤ صفحات PDF';
+
+                document.getElementById('rowName2').textContent = 'مراجعة المقال ٢';
+                document.getElementById('rowSched2').textContent = 'الأسبوع ١٠ (٦ ديسمبر ٢٠٢٦)';
+                document.getElementById('rowFmt2').textContent = '٣-٤ صفحات PDF';
+
+                document.getElementById('rowName3').textContent = 'التكليف الكتابي (البحث الرئيسي)';
+                document.getElementById('rowSched3').textContent = 'الأسبوع ١٣ (٢٧ ديسمبر ٢٠٢٦)';
+                document.getElementById('rowFmt3').textContent = 'أقصى حد ١٠ صفحات (APA)';
+
+                document.getElementById('rowName4').textContent = 'العرض التقديمي والشفهي';
+                document.getElementById('rowSched4').textContent = 'الأسبوع ١٤ (٢٨ ديسمبر – ٣ يناير)';
+                document.getElementById('rowFmt4').textContent = 'عرض تقديمي ومناقشة';
+
+                document.getElementById('rowName5').textContent = 'الاختبار النهائي (عبر الإنترنت)';
+                document.getElementById('rowSched5').textContent = 'الأسابيع ١٦–١٨ (١١–٣١ يناير ٢٠٢٧)';
+                document.getElementById('rowFmt5').textContent = 'اختبار إلكتروني مفتوح المصدر';
+
+                document.getElementById('midtermNoticeTitle').textContent = 'إجازة منتصف الفصل الدراسي: ٩ – ١٥ نوفمبر ٢٠٢٦';
+                document.getElementById('midtermNoticeSub').textContent = 'أسبوع المراجعة: ٤ – ١٠ يناير ٢٠٢٧ • فترة الامتحانات الرسمية: ١١ – ٣١ يناير ٢٠٢٧';
+
+                // Assignments Section
+                document.getElementById('assignHeading').textContent = 'ملفات ودليل التكليفات الأكاديمية';
+                document.getElementById('assignSub').textContent = 'الشروط التفصيلية، دليل البحث الميسر، المعايير التوثيقية، وحرية الرأي العلمي.';
+
+                document.getElementById('revSectionTitle').textContent = 'التكليفان ١ و ٢: مراجعات المقالات العلمية (٣٠٪ إجمالاً)';
+                document.getElementById('revSectionSub').textContent = 'قراءة نقدية مستقلة لمقالين منشورين في مجلات علمية محكمة.';
+
+                document.getElementById('rev1Title').textContent = 'مراجعة المقال الأول';
+                document.getElementById('rev1DeadlineText').textContent = 'الموعد: الأسبوع ٧ (الأحد، ٨ نوفمبر ٢٠٢٦، ٢٣:٥٩ بتوقيت ماليزيا)';
+                document.getElementById('rev1Li1').textContent = 'اختيار مقال علمي محكم منشور في مجلات فلسفة وتاريخ العلوم الإسلامية.';
+                document.getElementById('rev1Li2').textContent = 'التسليم بصيغة PDF، بطول ٣-٤ صفحات.';
+                document.getElementById('rev1Li3').textContent = 'تأصيل التحليل النقدي بناءً على المنظومة المعرفية الإسلامية.';
+
+                document.getElementById('rev2Title').textContent = 'مراجعة المقال الثاني';
+                document.getElementById('rev2DeadlineText').textContent = 'الموعد: الأسبوع ١٠ (الأحد، ٦ ديسمبر ٢٠٢٦، ٢٣:٥٩ بتوقيت ماليزيا)';
+                document.getElementById('rev2Li1').textContent = 'التركيز على القضايا الأخلاقية الحيوية أو التحديات العلمية المعاصرة.';
+                document.getElementById('rev2Li2').textContent = 'الاعتماد على ٥ مراجع أكاديمية على الأقل بتوثيق APA.';
+                document.getElementById('rev2Li3').textContent = 'تقديم حجج نقدية متزنة ومقترحات لآفاق بحثية مستقبلية.';
+
+                // Layman's guide AR
+                document.getElementById('laymanGuideTitle').textContent = 'دليل الإرشاد الميسر وخطوات البحث في Google Scholar';
+                document.getElementById('laymanStep1Title').textContent = '١. أين وكيف تبحث؟ (Google Scholar)';
+                document.getElementById('laymanStep1Text').textContent = 'ادخل إلى محرك الباحث العلمي (scholar.google.com) وابحث عن مقال منشور في مجلة محكمة باستخدام الكلمات المفتاحية المقترحة أعلاه.';
+                document.getElementById('laymanStep2Title').textContent = '٢. ركّز على نقد الفجوات ومواطن النقص (Gaps)';
+                document.getElementById('laymanStep2Text').textContent = 'المطلوب ليس مجرد تلخيص أو مدح للكاتب! المراجعة النقدية تعني كشف ما أغفله المؤلف، ومساءلة فرضياته، وبيان أوجه القصور المنهجي أو المنطلقات العلمانية غير المصرح بها.';
+                document.getElementById('opinionBannerHeading').textContent = 'توجيه المحاضر المباشر والأساسي';
+                document.getElementById('opinionBannerQuote').textContent = '«أريد رأيك أنت.. فرأيك النقدي المستقل هو الأهم!»';
+                document.getElementById('opinionBannerDesc').textContent = 'عبر عن موقفك المعرفي بقوة ومنهجية. لا تتردد في مناقشة نتائج الكاتب بالحجة المنطقية التوحيدية؛ ما نبحث عنه هو صوتك وبصيرتك النقدية.';
+
+                document.getElementById('rubricTitle').textContent = 'الهيكل المنهجي المطلوب لكتابة المراجعة النقدية';
+                document.getElementById('rub1').textContent = '١. الأطروحة والسياق';
+                document.getElementById('rub1d').textContent = 'ملخص الأفكار المحورية، المنهجية المتبعة، والفرضيات الأساسية.';
+                document.getElementById('rub2').textContent = '٢. المنطلقات القيمية والمعرفية';
+                document.getElementById('rub2d').textContent = 'فحص الرؤية الكونية للمؤلف (المادية العلمانية مقابل التوحيد).';
+                document.getElementById('rub3').textContent = '٣. صوتك النقدي ومواطن الخلل';
+                document.getElementById('rub3d').textContent = 'إبراز الفجوات المعرفية ومناقشة أوجه القصور بالحجة التوحيدية.';
+
+                // Assignment 3 AR
+                document.getElementById('waDossierTitle').textContent = 'التكليف ٣: كتابة مقال بحثي علمي محكم';
+                document.getElementById('waDeadlineFull').textContent = 'الموعد: الأسبوع ١٣ (الأحد، ٢٧ ديسمبر ٢٠٢٦، ٢٣:٥٩ بتوقيت ماليزيا) • الوزن: ٢٠٪';
+                document.getElementById('waArticleMandateTitle').textContent = 'متطلبات صياغة المقال:';
+                document.getElementById('waArticleMandateDesc').textContent = 'على الطالب كتابة مقال علمي أصيل يعتمد على ٥ مراجع أكاديمية على الأقل (مجلات محكمة أو أمهات الكتب)، مع التوثيق الدقيق بنظام APA 7th وبحد أقصى ١٠ صفحات.';
+                document.getElementById('waInspirationTitle').textContent = 'تبحث عن فكرة ملهمة أو عنوان مبتكر؟';
+                document.getElementById('waInspirationSub').textContent = 'استعن بـ «مُوَلِّد الأطروحات والعناوين البحثية التفاعلي» بالأسفل لتركيب موضوع فريد يجمع بين الأصالة والمعاصرة.';
+                document.getElementById('waJumpBtn').textContent = 'الانتقال إلى مولد العناوين ↓';
+
+                document.getElementById('waPromptHeader').textContent = 'المسارات الأكاديمية للمقرر (أو يمكنك توليد عنوانك بالأسفل):';
+                document.getElementById('pr1Title').textContent = 'مقاصد الشريعة والتكنولوجيا المعاصرة';
+                document.getElementById('pr1Desc').textContent = 'ناقش دور المقاصد الخمسة في حفظ المصالح البشرية وضبط الثورة التقنية.';
+                document.getElementById('pr2Title').textContent = 'الخلق والترابط الكوني في القرآن';
+                document.getElementById('pr2Desc').textContent = 'تدبر الآيات الكونية والشهود التوحيدي في ترابط المخلوقات والتوازن البيئي.';
+                document.getElementById('pr3Title').textContent = 'العلم الحديث وتغييب الأخلاق الروحية';
+                document.getElementById('pr3Desc').textContent = 'حلل الآثار الخطيرة لفصل الأبعاد الأخلاقية والروحية عن العلوم الطبيعية والإنسانية.';
+                document.getElementById('pr4Title').textContent = 'دراسة لشخصية علمية في العصر الذهبي';
+                document.getElementById('pr4Desc').textContent = 'اختر عالماً مسلماً واشرح إسهاماته التخصصية، التحديات التي واجهها، وأثره المعرفي الباقي.';
+
+                // Generator
+                document.getElementById('dirMainHeading').textContent = 'مُوَلِّد الأطروحات والعناوين البحثية التفاعلي';
+                document.getElementById('dirSubHeading').textContent = 'توليد أفكار بحثية بينية مبتكرة بالجمع بين ٥٠ ركيزة معرفية إسلامية و٥٠ مجالاً علمياً وقانونياً معاصراً.';
+                document.getElementById('generatorCardTitle').textContent = 'مركّب العناوين والمسائل البحثية المركبة';
+                document.getElementById('btnRandomizeTitle').textContent = 'توليد توليفة عشوائية';
+                document.getElementById('lblIslamicPillar').textContent = '١. المنظومة المعرفية الإسلامية (٥٠ خياراً)';
+                document.getElementById('lblSciencePillar').textContent = '٢. المجال العلمي والقانوني والبيئي (٥٠ خياراً)';
+                document.getElementById('lblSynthesizedTopic').textContent = 'العنوان المقترح للأطروحة التفاعلية';
+                document.getElementById('btnCopyTitleText').textContent = 'نسخ العنوان المقترح';
+                document.getElementById('curatedHeading').textContent = 'الدليل الموضوعي الشامل لفلسفة العلوم الإسلامية';
+                document.getElementById('btnExpandAll').textContent = 'فتح الكل';
+                document.getElementById('btnCollapseAll').textContent = 'إغلاق الكل';
+
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+                document.getElementById('currentLangFlag').textContent = '🇬🇧';
+                document.getElementById('currentLangLabel').textContent = 'English';
+                document.getElementById('targetLangPreview').textContent = 'العربية';
+
+                // Navigation
+                document.getElementById('headerCourseTitle').textContent = 'Philosophy of Islamic Science';
+                document.getElementById('navLinkOverview').textContent = 'Overview';
+                document.getElementById('navLinkDeadlines').textContent = 'Deadlines';
+                document.getElementById('navLinkAssignments').textContent = 'Assignments';
+                document.getElementById('navLinkTopics').textContent = 'Thesis Directory';
+
+                // Hero
+                document.getElementById('badgeCalendarTerm').textContent = 'Official Timeline';
+                document.getElementById('heroMainHeading').textContent = 'Integrative Epistemology & Modern Scientific Discourse';
+                document.getElementById('heroSubtitle').textContent = 'Comprehensive portal for syllabus mastery, rigorous critical reviews, interdisciplinary thesis formulation, and real-time assessment monitoring.';
+                document.getElementById('deadlineGridTitle').textContent = 'Submission Countdowns & Milestone Deadlines';
+                document.getElementById('gmtBadge').textContent = 'Malaysia Time (GMT+8)';
+
+                // Deadlines
+                document.getElementById('cdTitle1').textContent = 'Article Review 1';
+                document.getElementById('cdDate1').textContent = '8 Nov 2026';
+                document.getElementById('cdTitle2').textContent = 'Article Review 2';
+                document.getElementById('cdDate2').textContent = '6 Dec 2026';
+                document.getElementById('cdTitle3').textContent = 'Written Assignment';
+                document.getElementById('cdDate3').textContent = '27 Dec 2026';
+                document.getElementById('cdTitle4').textContent = 'Presentation';
+                document.getElementById('cdDate4').textContent = '3 Jan 2027';
+                document.getElementById('cdTitle5').textContent = 'Final Test (Online)';
+                document.getElementById('cdDate5').textContent = '11–31 Jan 2027';
+
+                // Overview & Table
+                document.getElementById('overviewSectionHeading').textContent = 'Assessment Distribution & Semester Structure';
+                document.getElementById('overviewSectionSub').textContent = 'Weightage distribution and bilingual grading policy overview.';
+                document.getElementById('chartCardHeading').textContent = 'Course Weightage Architecture';
+                document.getElementById('chartCenterLabel').textContent = 'Total Mark';
+                document.getElementById('tableTitle').textContent = 'Component Specifications';
+                document.getElementById('thAssessment').textContent = 'Assessment Item';
+                document.getElementById('thSchedule').textContent = 'Scheduled Period';
+                document.getElementById('thWeight').textContent = 'Weight';
+                document.getElementById('thFormat').textContent = 'Format';
+
+                document.getElementById('rowName1').textContent = 'Article Review 1';
+                document.getElementById('rowSched1').textContent = 'Week 7 (8 Nov 2026)';
+                document.getElementById('rowFmt1').textContent = '3–4 Pages PDF';
+
+                document.getElementById('rowName2').textContent = 'Article Review 2';
+                document.getElementById('rowSched2').textContent = 'Week 10 (6 Dec 2026)';
+                document.getElementById('rowFmt2').textContent = '3–4 Pages PDF';
+
+                document.getElementById('rowName3').textContent = 'Written Assignment';
+                document.getElementById('rowSched3').textContent = 'Week 13 (27 Dec 2026)';
+                document.getElementById('rowFmt3').textContent = 'Max 10 Pages (APA)';
+
+                document.getElementById('rowName4').textContent = 'Presentation';
+                document.getElementById('rowSched4').textContent = 'Week 14 (28 Dec–3 Jan)';
+                document.getElementById('rowFmt4').textContent = 'Oral / Slide Defense';
+
+                document.getElementById('rowName5').textContent = 'Final Test (Online)';
+                document.getElementById('rowSched5').textContent = 'Weeks 16–18 (11–31 Jan 2027)';
+                document.getElementById('rowFmt5').textContent = 'Online Open Book';
+
+                document.getElementById('midtermNoticeTitle').textContent = 'Mid-Semester Break: 9 – 15 November 2026';
+                document.getElementById('midtermNoticeSub').textContent = 'Revision Week: 4 – 10 January 2027 • Official OPR Period: 11 – 31 January 2027';
+
+                // Assignments Section
+                document.getElementById('assignHeading').textContent = 'Assignment Dossiers & Requirements';
+                document.getElementById('assignSub').textContent = 'Exhaustive parameters, structural mandates, layman guidelines, and citation frameworks.';
+
+                document.getElementById('revSectionTitle').textContent = 'Assignments 1 & 2: Article Reviews (30% Total)';
+                document.getElementById('revSectionSub').textContent = 'Independent scholarly critique of two published journal articles.';
+
+                document.getElementById('rev1Title').textContent = 'Article Review 1';
+                document.getElementById('rev1DeadlineText').textContent = 'Deadline: Week 7 (Sunday, 8 Nov 2026, 23:59 GMT+8)';
+                document.getElementById('rev1Li1').textContent = 'Select one scholarly peer-reviewed article in Islamic science.';
+                document.getElementById('rev1Li2').textContent = 'Submit typed PDF format, 3–4 pages in length.';
+                document.getElementById('rev1Li3').textContent = 'Ground critiques in Islamic epistemological frameworks.';
+
+                document.getElementById('rev2Title').textContent = 'Article Review 2';
+                document.getElementById('rev2DeadlineText').textContent = 'Deadline: Week 10 (Sunday, 6 Dec 2026, 23:59 GMT+8)';
+                document.getElementById('rev2Li1').textContent = 'Focus on modern scientific controversy or bioethical discourse.';
+                document.getElementById('rev2Li2').textContent = 'Engage at least 5 scholarly references (APA preferred).';
+                document.getElementById('rev2Li3').textContent = 'Provide informed counterarguments and future research inquiries.';
+
+                // Layman's guide EN
+                document.getElementById('laymanGuideTitle').textContent = "Layman's Guide & Search Protocol: How to Ace Your Article Reviews";
+                document.getElementById('laymanStep1Title').textContent = '1. Where & What to Search (Google Scholar)';
+                document.getElementById('laymanStep1Text').textContent = 'Go to Google Scholar (scholar.google.com) and find a published peer-reviewed academic journal article. Use targeted search keywords like:';
+                document.getElementById('laymanStep2Title').textContent = '2. Highlight the Gaps & Limitations';
+                document.getElementById('laymanStep2Text').textContent = 'Do not merely summarize or praise the article! A critical review means dissecting what the author missed, oversimplified, or failed to address. Identify weak assumptions, secular biases, or methodological gaps.';
+                document.getElementById('opinionBannerHeading').textContent = "Lecturer's Direct Expectation";
+                document.getElementById('opinionBannerQuote').textContent = '"I need your opinion — your opinion is what counts!"';
+                document.getElementById('opinionBannerDesc').textContent = "Stand your ground intellectually. Don't be shy to challenge the author's conclusions using sound Islamic epistemic logic. We want your analytical voice, critical stance, and original philosophical assessment.";
+
+                document.getElementById('rubricTitle').textContent = 'Required Critical Review Anatomy';
+                document.getElementById('rub1').textContent = '1. Thesis & Scope';
+                document.getElementById('rub1d').textContent = 'Summary of central arguments, methodologies, and core hypotheses.';
+                document.getElementById('rub2').textContent = '2. Axiological Assumptions';
+                document.getElementById('rub2d').textContent = 'Underlying philosophical worldview, secular vs tawhidic premises.';
+                document.getElementById('rub3').textContent = '3. Scholarly Critique & Voice';
+                document.getElementById('rub3d').textContent = 'Your independent evaluation of gaps, blind spots, and counter-perspectives.';
+
+                // Assignment 3 EN
+                document.getElementById('waDossierTitle').textContent = 'Assignment 3: Major Written Treatise / Scholarly Article';
+                document.getElementById('waDeadlineFull').textContent = 'Deadline: Week 13 (Sunday, 27 December 2026, 23:59 GMT+8) • Weight: 20%';
+                document.getElementById('waArticleMandateTitle').textContent = 'Article Writing Requirement:';
+                document.getElementById('waArticleMandateDesc').textContent = 'Students must write an original scholarly article. The treatise must engage with a minimum of 5 academic references (peer-reviewed journals or seminal texts), properly cited in APA 7th format.';
+                document.getElementById('waInspirationTitle').textContent = 'Need Topic Inspiration?';
+                document.getElementById('waInspirationSub').textContent = 'Refer to the Interdisciplinary Topic & Thesis Formulator below to synthesize custom interdisciplinary titles.';
+                document.getElementById('waJumpBtn').textContent = 'Jump to Thesis Formulator ↓';
+
+                document.getElementById('waPromptHeader').textContent = 'Core Course Tracks (Or Synthesize Your Own Topic Below):';
+                document.getElementById('pr1Title').textContent = 'Maqasid al-Shariah & Technology';
+                document.getElementById('pr1Desc').textContent = 'Discuss how the 5 major objectives preserve human welfare amid rapid technological disruption.';
+                document.getElementById('pr2Title').textContent = 'Creation & Interconnectedness';
+                document.getElementById('pr2Desc').textContent = 'The Qur\'an urges observing cosmic signs (Ayat). Examine ecological interconnectedness in Tawhidic thought.';
+                document.getElementById('pr3Title').textContent = 'Modern Science & Morality';
+                document.getElementById('pr3Desc').textContent = 'Analyze the systemic perils of divorcing moral-spiritual virtues from empirical inquiry and human sciences.';
+                document.getElementById('pr4Title').textContent = 'Golden Age Polymath Monograph';
+                document.getElementById('pr4Desc').textContent = 'Analyze a classical Muslim scholar\'s contributions, intellectual controversies, and lasting epistemological legacy.';
+
+                // Generator
+                document.getElementById('dirMainHeading').textContent = 'Interdisciplinary Topic & Thesis Formulator';
+                document.getElementById('dirSubHeading').textContent = 'Synthesize novel research themes by pairing classical Islamic philosophical frameworks with contemporary scientific and socio-legal inquiries.';
+                document.getElementById('generatorCardTitle').textContent = 'Research Thesis Title Synthesizer';
+                document.getElementById('btnRandomizeTitle').textContent = 'Randomize Pairing';
+                document.getElementById('lblIslamicPillar').textContent = '1. Islamic Epistemological Framework (50 Choices)';
+                document.getElementById('lblSciencePillar').textContent = '2. Scientific, Legal & Sustainability Domain (50 Choices)';
+                document.getElementById('lblSynthesizedTopic').textContent = 'Synthesized Research Thesis Proposition';
+                document.getElementById('btnCopyTitleText').textContent = 'Copy Formulated Thesis';
+                document.getElementById('curatedHeading').textContent = 'Core Curated Islamic Science Disciplines';
+                document.getElementById('btnExpandAll').textContent = 'Expand All';
+                document.getElementById('btnCollapseAll').textContent = 'Collapse All';
+            }
+
+            populateGeneratorDropdowns();
+            generateInterdisciplinaryTitle();
+            renderStandardAccordion();
+            initChart();
+        }
+
+        function toggleLanguage() {
+            setLanguage(currentLang === 'en' ? 'ar' : 'en');
+        }
+
+        // --- LIFECYCLE INITIALIZATION ---
+        window.onload = function () {
+            setLanguage('en');
+            runCountdowns();
+            setInterval(runCountdowns, 1000);
+        };
+    </script>
+</body>
+</html>
