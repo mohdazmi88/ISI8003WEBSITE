@@ -153,11 +153,11 @@
                     <!-- 5 Assessments Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                         <!-- Card 1: Article Review 1 -->
-                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                        <div id="cdCard1" class="deadline-card rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between transition-all">
                             <div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">15%</span>
-                                    <span class="text-[11px] text-slate-400 font-mono">Week 7</span>
+                                    <span id="cdBadge1" class="text-[10px] font-mono px-2 py-0.5 rounded text-slate-400 bg-surface">Week 7</span>
                                 </div>
                                 <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle1">Article Review 1</h4>
                                 <p class="text-xs text-slate-400 mt-0.5" id="cdDate1">8 Nov 2026</p>
@@ -173,11 +173,11 @@
                         </div>
 
                         <!-- Card 2: Article Review 2 -->
-                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                        <div id="cdCard2" class="deadline-card rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between transition-all">
                             <div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">15%</span>
-                                    <span class="text-[11px] text-slate-400 font-mono">Week 10</span>
+                                    <span id="cdBadge2" class="text-[10px] font-mono px-2 py-0.5 rounded text-slate-400 bg-surface">Week 10</span>
                                 </div>
                                 <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle2">Article Review 2</h4>
                                 <p class="text-xs text-slate-400 mt-0.5" id="cdDate2">6 Dec 2026</p>
@@ -193,11 +193,11 @@
                         </div>
 
                         <!-- Card 3: Written Assignment -->
-                        <div class="rounded-2xl bg-surfaceLight/80 border border-gold/40 p-4 flex flex-col justify-between shadow-lg shadow-gold/5 transition-all">
+                        <div id="cdCard3" class="deadline-card rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between transition-all">
                             <div>
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/30">20%</span>
-                                    <span class="text-[11px] text-amber-300 font-mono">Week 13</span>
+                                    <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">20%</span>
+                                    <span id="cdBadge3" class="text-[10px] font-mono px-2 py-0.5 rounded text-slate-400 bg-surface">Week 13</span>
                                 </div>
                                 <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle3">Written Assignment</h4>
                                 <p class="text-xs text-slate-400 mt-0.5" id="cdDate3">27 Dec 2026</p>
@@ -213,11 +213,11 @@
                         </div>
 
                         <!-- Card 4: Presentation -->
-                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                        <div id="cdCard4" class="deadline-card rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between transition-all">
                             <div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">10%</span>
-                                    <span class="text-[11px] text-slate-400 font-mono">Week 14</span>
+                                    <span id="cdBadge4" class="text-[10px] font-mono px-2 py-0.5 rounded text-slate-400 bg-surface">Week 14</span>
                                 </div>
                                 <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle4">Presentation</h4>
                                 <p class="text-xs text-slate-400 mt-0.5" id="cdDate4">3 Jan 2027</p>
@@ -233,11 +233,11 @@
                         </div>
 
                         <!-- Card 5: Final Test (Online) -->
-                        <div class="rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/40 transition-all">
+                        <div id="cdCard5" class="deadline-card rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between transition-all">
                             <div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/20">40%</span>
-                                    <span class="text-[11px] text-slate-400 font-mono">W16–18</span>
+                                    <span id="cdBadge5" class="text-[10px] font-mono px-2 py-0.5 rounded text-slate-400 bg-surface">W16–18</span>
                                 </div>
                                 <h4 class="mt-2 text-sm font-bold text-bright" id="cdTitle5">Final Test (Online)</h4>
                                 <p class="text-xs text-slate-400 mt-0.5" id="cdDate5">11–31 Jan 2027</p>
@@ -858,94 +858,77 @@
         function runCountdowns() {
             const now = new Date().getTime();
 
-            function calcParts(target) {
-                const diff = target - now;
-                if (diff <= 0) return { d: '00', h: '00', m: '00', s: '00' };
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
-                return {
-                    d: d < 10 ? '0' + d : d,
-                    h: h < 10 ? '0' + h : h,
-                    m: m < 10 ? '0' + m : m,
-                    s: s < 10 ? '0' + s : s
-                };
-            }
+            const deadlineList = [
+                { id: 1, name: 'ar1', target: deadlines.ar1, week: 'Week 7', week_ar: 'الأسبوع ٧' },
+                { id: 2, name: 'ar2', target: deadlines.ar2, week: 'Week 10', week_ar: 'الأسبوع ١٠' },
+                { id: 3, name: 'wa',  target: deadlines.wa,  week: 'Week 13', week_ar: 'الأسبوع ١٣' },
+                { id: 4, name: 'pr',  target: deadlines.pr,  week: 'Week 14', week_ar: 'الأسبوع ١٤' },
+                { id: 5, name: 'ft',  target: deadlines.ft,  week: 'W16–18',  week_ar: 'الأسابيع ١٦–١٨' }
+            ];
 
-            const c1 = calcParts(deadlines.ar1);
-            const c2 = calcParts(deadlines.ar2);
-            const c3 = calcParts(deadlines.wa);
-            const c4 = calcParts(deadlines.pr);
-            const c5 = calcParts(deadlines.ft);
+            // Identify the single nearest upcoming deadline (diff > 0)
+            let nextUpcomingId = null;
+            let minDiff = Infinity;
 
-            document.getElementById('cd1-d').textContent = c1.d;
-            document.getElementById('cd1-h').textContent = c1.h;
-            document.getElementById('cd1-m').textContent = c1.m;
-            document.getElementById('cd1-s').textContent = c1.s;
+            deadlineList.forEach(item => {
+                const diff = item.target - now;
+                if (diff > 0 && diff < minDiff) {
+                    minDiff = diff;
+                    nextUpcomingId = item.id;
+                }
+            });
 
-            document.getElementById('cd2-d').textContent = c2.d;
-            document.getElementById('cd2-h').textContent = c2.h;
-            document.getElementById('cd2-m').textContent = c2.m;
-            document.getElementById('cd2-s').textContent = c2.s;
+            deadlineList.forEach(item => {
+                const diff = item.target - now;
+                const card = document.getElementById(`cdCard${item.id}`);
+                const badge = document.getElementById(`cdBadge${item.id}`);
+                const secondEl = document.getElementById(`cd${item.id}-s`);
 
-            document.getElementById('cd3-d').textContent = c3.d;
-            document.getElementById('cd3-h').textContent = c3.h;
-            document.getElementById('cd3-m').textContent = c3.m;
-            document.getElementById('cd3-s').textContent = c3.s;
+                if (!card || !badge) return;
 
-            document.getElementById('cd4-d').textContent = c4.d;
-            document.getElementById('cd4-h').textContent = c4.h;
-            document.getElementById('cd4-m').textContent = c4.m;
-            document.getElementById('cd4-s').textContent = c4.s;
+                if (diff <= 0) {
+                    // Passed deadline: Stay red & mark closed
+                    card.className = "deadline-card rounded-2xl bg-red-950/30 border-2 border-red-500/70 p-4 flex flex-col justify-between shadow-lg shadow-red-950/50 transition-all";
+                    badge.className = "text-[10px] font-mono px-2 py-0.5 rounded font-bold bg-red-500/20 text-red-300 border border-red-500/30";
+                    badge.textContent = (currentLang === 'ar') ? 'انتهى الموعد' : 'CLOSED';
+                    if (secondEl) secondEl.className = "text-sm font-bold text-red-400";
 
-            document.getElementById('cd5-d').textContent = c5.d;
-            document.getElementById('cd5-h').textContent = c5.h;
-            document.getElementById('cd5-m').textContent = c5.m;
-            document.getElementById('cd5-s').textContent = c5.s;
-        }
+                    document.getElementById(`cd${item.id}-d`).textContent = '00';
+                    document.getElementById(`cd${item.id}-h`).textContent = '00';
+                    document.getElementById(`cd${item.id}-m`).textContent = '00';
+                    document.getElementById(`cd${item.id}-s`).textContent = '00';
+                } else if (item.id === nextUpcomingId) {
+                    // ONLY the single upcoming deadline turns red
+                    card.className = "deadline-card rounded-2xl bg-gradient-to-b from-red-950/40 via-surfaceLight to-surface border-2 border-red-500 p-4 flex flex-col justify-between shadow-xl shadow-red-950/60 ring-1 ring-red-500/40 transition-all";
+                    badge.className = "text-[10px] font-mono px-2.5 py-0.5 rounded-full font-bold bg-red-500 text-white animate-pulse shadow-sm shadow-red-500/50";
+                    badge.textContent = (currentLang === 'ar') ? 'الموعد القادم ⚡' : 'NEXT UPCOMING ⚡';
+                    if (secondEl) secondEl.className = "text-sm font-bold text-red-400";
 
-        // --- INITIALIZE & UPDATE CHART ---
-        function initChart() {
-            const ctx = document.getElementById('assessmentChart').getContext('2d');
-            const labelsEn = ['Final Test (Online)', 'Written Assignment', 'Article Review 1', 'Article Review 2', 'Presentation'];
-            const labelsAr = ['الاختبار النهائي (عبر الإنترنت)', 'التكليف الكتابي', 'مراجعة المقال ١', 'مراجعة المقال ٢', 'العرض التقديمي'];
+                    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            if (assessmentChartInstance) {
-                assessmentChartInstance.destroy();
-            }
+                    document.getElementById(`cd${item.id}-d`).textContent = d < 10 ? '0' + d : d;
+                    document.getElementById(`cd${item.id}-h`).textContent = h < 10 ? '0' + h : h;
+                    document.getElementById(`cd${item.id}-m`).textContent = m < 10 ? '0' + m : m;
+                    document.getElementById(`cd${item.id}-s`).textContent = s < 10 ? '0' + s : s;
+                } else {
+                    // Future deadlines beyond the immediate next one: neutral theme
+                    card.className = "deadline-card rounded-2xl bg-surfaceLight/80 border border-borderMuted p-4 flex flex-col justify-between hover:border-gold/30 transition-all";
+                    badge.className = "text-[10px] font-mono px-2 py-0.5 rounded text-slate-400 bg-surface border border-borderMuted/60";
+                    badge.textContent = (currentLang === 'ar') ? item.week_ar : item.week;
+                    if (secondEl) secondEl.className = "text-sm font-bold text-gold";
 
-            assessmentChartInstance = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: currentLang === 'ar' ? labelsAr : labelsEn,
-                    datasets: [{
-                        data: [40, 20, 15, 15, 10],
-                        backgroundColor: ['#d4af37', '#d97706', '#eab308', '#f59e0b', '#94a3b8'],
-                        borderColor: '#07090e',
-                        borderWidth: 4,
-                        hoverOffset: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '72%',
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: '#181e2b',
-                            titleColor: '#f8fafc',
-                            bodyColor: '#d4af37',
-                            borderColor: '#242d3d',
-                            borderWidth: 1,
-                            callbacks: {
-                                label: function(context) {
-                                    return ` ${context.label}: ${context.raw}%`;
-                                }
-                            }
-                        }
-                    }
+                    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    document.getElementById(`cd${item.id}-d`).textContent = d < 10 ? '0' + d : d;
+                    document.getElementById(`cd${item.id}-h`).textContent = h < 10 ? '0' + h : h;
+                    document.getElementById(`cd${item.id}-m`).textContent = m < 10 ? '0' + m : m;
+                    document.getElementById(`cd${item.id}-s`).textContent = s < 10 ? '0' + s : s;
                 }
             });
         }
@@ -1097,6 +1080,59 @@
             document.querySelectorAll('.topic-item').forEach(item => {
                 if (expand) item.classList.add('open');
                 else item.classList.remove('open');
+            });
+        }
+
+        // --- CHART INITIALIZATION ---
+        function initChart() {
+            const canvas = document.getElementById('assessmentChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            if (assessmentChartInstance) {
+                assessmentChartInstance.destroy();
+            }
+
+            const isAr = currentLang === 'ar';
+            const labels = isAr
+                ? ['الاختبار النهائي (عبر الإنترنت)', 'التكليف الكتابي (٣)', 'مراجعة المقال ١', 'مراجعة المقال ٢', 'العرض التقديمي']
+                : ['Final Test (Online)', 'Written Assignment', 'Article Review 1', 'Article Review 2', 'Presentation'];
+
+            assessmentChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: [40, 20, 15, 15, 10],
+                        backgroundColor: [
+                            '#d4af37', // gold (Final Test 40%)
+                            '#d97706', // amber-600 (Written Assign 20%)
+                            '#eab308', // yellow-500 (Review 1 15%)
+                            '#fbbf24', // amber-400 (Review 2 15%)
+                            '#94a3b8'  // slate-400 (Presentation 10%)
+                        ],
+                        borderColor: '#0f131c',
+                        borderWidth: 3,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '72%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
             });
         }
 
